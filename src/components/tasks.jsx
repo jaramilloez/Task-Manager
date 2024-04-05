@@ -2,42 +2,41 @@ import React, { Component } from 'react';
 import { tasks } from '../fakeTaskService'
 
 class Tasks extends Component {
-    state = {}
     render() { 
         return (
-            <div className='container'>
-                <div className='row rounded-3 fs-2 fw-bold'>
-                    <div className='col'>Task</div>
-                    <div className='col'>Description</div>
-                    <div className='col'>Category</div>
-                    <div className='col'>Completed</div>
+            <div className='container-xl py-4 border-bottom border-3 border-dark-subtle' style={{fontFamily: 'Open sans'}}>
+                <div className='row rounded-3 fs-1 fw-bold'>
+                    <div className='col-5 col-lg-3 ps-4'>Task</div>
+                    <div className='col-lg-5 d-none d-lg-block'>Description</div>
+                    <div className='col-5 col-lg-3'>Type</div>
+                    <div className='col-2 col-lg-1'></div>
                 </div>
-                { tasks.map(task => (
-                    <div className='row bg-light rounded-3 shadow-sm fs-4 p-1' key={ task._id }>
-                        <div className='col'>
-                            { task.title }
+                { tasks.sort((a, b) => b.severity._id - a.severity._id)
+                    .map(task => (
+                        <div className='row rounded-4 bg-light shadow-sm fs-5 my-3' key={ task._id }>
+                            <div className='col-5 col-lg-3 py-3 border-end border-2 ps-4'>
+                                { task.title }
+                            </div>
+                            <div className='col-lg-5 py-3 border-end border-2 d-none d-lg-block'>
+                                { task.task }
+                            </div>
+                            <div className='col-5 col-lg-3 py-3 border-end border-2'>
+                                { task.category }
+                            </div>
+                            <div className='col-2 col-lg-1 py-3 text-center'>
+                                <input 
+                                    type='checkbox' 
+                                    className='form-check-input'
+                                    style={{height: '100%', width: '28px'}}
+                                    checked={ task.completed }
+                                    readOnly>
+                                </input>
+                            </div>
                         </div>
-                        <div className='col'>
-                            { task.task }
-                        </div>
-                        <div className='col'>
-                            { task.category }
-                        </div>
-                        <div className='col'>
-                            <input 
-                                type='checkbox' 
-                                className='form-check' 
-                                checked={ task.completed } 
-                                onChange={event => this.completedTask(task._id, event.target.checked)}>
-                            </input>
-                        </div>
-                    </div>
-                ))}
+                    ))
+                }
             </div>
         );
-    }
-    completedTask(taskId, isChecked) {
-        console.log(isChecked)
     }
 }
  

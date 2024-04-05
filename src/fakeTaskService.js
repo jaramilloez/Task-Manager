@@ -4,7 +4,7 @@ export const tasks = [
     title: "Stay Hydrated",
     task: "Drink da dew",
     category: "DayToDay",
-    severity: { _id: "61b017eb0cce782d386e7371", name: "Very Important" },
+    severity: { _id: 2, name: "Very Important" },
     completed: false,
   },
   {
@@ -12,7 +12,7 @@ export const tasks = [
     title: "Dishes",
     task: "Do the dishes",
     category: "Home",
-    severity: { _id: "61b017a20cce782d386e736f", name: "Normal" },
+    severity: { _id: 0, name: "Normal" },
     completed: false,
   },
   {
@@ -20,7 +20,7 @@ export const tasks = [
     title: "Laundry",
     task: "Do Laundry",
     category: "Home",
-    severity: { _id: "61b017a20cce782d386e736f", name: "Normal" },
+    severity: { _id: 0, name: "Normal" },
     completed: false,
   },
   {
@@ -28,7 +28,7 @@ export const tasks = [
     title: "Report",
     task: "Make Employee Report",
     category: "Work",
-    severity: { _id: "61b017cc0cce782d386e7370", name: "Important" },
+    severity: { _id: 1, name: "Important" },
     completed: false,
   },
   {
@@ -36,7 +36,7 @@ export const tasks = [
     title: "Brush Teeth",
     task: "Brush my Teeth",
     category: "Home",
-    severity: { _id: "61b017eb0cce782d386e7371", name: "Very Important" },
+    severity: { _id: 2, name: "Very Important" },
     completed: false,
   },
 ];
