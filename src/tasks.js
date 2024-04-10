@@ -2,42 +2,42 @@ export const tasks = [
   {
     _id: "618c3432eddf61c496096578",
     title: "Stay Hydrated",
-    task: "Drink da dew",
-    category: "DayToDay",
+    description: "Drink da dew",
+    type: "DayToDay",
     severity: { _id: 2, name: "Very Important" },
-    completed: false,
+    complete: false,
   },
   {
     _id: "618c3459eddf61c49609657a",
     title: "Dishes",
-    task: "Do the dishes",
-    category: "Home",
+    description: "Do the dishes",
+    type: "Home",
     severity: { _id: 0, name: "Normal" },
-    completed: false,
+    complete: false,
   },
   {
     _id: "618c345feddf61c49609657c",
     title: "Laundry",
-    task: "Do Laundry",
-    category: "Home",
+    description: "Do Laundry",
+    type: "Home",
     severity: { _id: 0, name: "Normal" },
-    completed: false,
+    complete: false,
   },
   {
     _id: "618c3469eddf61c49609657e",
     title: "Report",
-    task: "Make Employee Report",
-    category: "Work",
+    description: "Make Employee Report",
+    type: "Work",
     severity: { _id: 1, name: "Important" },
-    completed: false,
+    complete: false,
   },
   {
     _id: "618c3474eddf61c496096580",
     title: "Brush Teeth",
-    task: "Brush my Teeth",
-    category: "Home",
+    description: "Brush my Teeth",
+    type: "Home",
     severity: { _id: 2, name: "Very Important" },
-    completed: false,
+    complete: false,
   },
 ];
 
@@ -48,10 +48,10 @@ export function getTask(id) {
 export function saveTask(task) {
   let taskInDb = tasks.find((t) => t._id === task._id) || {};
   taskInDb.title = task.title;
-  taskInDb.task = task.task;
-  taskInDb.category = task.category;
+  taskInDb.description = task.description;
+  taskInDb.type = task.type;
   taskInDb.severity = task.severity;
-  taskInDb.completed = task.completed;
+  taskInDb.complete = task.complete;
 
   if (!taskInDb._id) {
     taskInDb._id = Date.now();
