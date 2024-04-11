@@ -14,6 +14,10 @@ class Task extends Component {
         horizontalLines: 'border-bottom border-3 border-dark-subtle',
     }
 
+    deleteTask = (taskId) => {
+        this.setState({ tasks: this.state.tasks.filter(c => c._id !== taskId)})
+    }
+
     render() { 
         return (
             <div className={`${this.styles.horizontalLines} container-xl py-4`} style={{ fontFamily: 'Open sans' }}>
@@ -24,7 +28,7 @@ class Task extends Component {
                     <div className={ `${this.styles.completeCol}` }></div>
                 </div>
                 <div className={`${this.styles.horizontalLines}`}></div>
-                { tasks.sort((a, b) => b.severity._id - a.severity._id)
+                { this.state.tasks.sort((a, b) => b.severity._id - a.severity._id)
                     .map(task => (
                         <div className='row rounded-4 bg-light shadow-sm fs-4 my-3 d-flex align-items-center' key={ task._id }>
                             <div className={ `${this.styles.taskCol} ps-4` }>
