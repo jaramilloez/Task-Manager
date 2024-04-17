@@ -22,15 +22,18 @@ class Tasks extends Component {
         return (
             <div className={`${this.styles.horizontalLines} container-xl py-4`} style={{ fontFamily: 'Open sans' }}>
                 <div className='row rounded-3 fs-1 fw-bold' style={{ letterSpacing: '0.1em' }}>
-                    <div className={ `${this.styles.taskCol} ps-4` }>TASK</div>
+                    <div className={ `${this.styles.taskCol} ps-4 text-hover-primary` }>TASK</div>
                     <div className={ `${this.styles.descriptionCol}` }>DESCRIPTION</div>
-                    <div className={ `${this.styles.typeCol}` }>TYPE</div>
+                    <div className={ `${this.styles.typeCol}` }style={{'&:hover':{ backgroundColor: 'black' }}}>TYPE</div>
                     <div className={ `${this.styles.completeCol}` }></div>
                 </div>
                 <div className={`${this.styles.horizontalLines}`}></div>
                 { this.state.tasks.sort((a, b) => b.severity._id - a.severity._id)
                     .map(task => (
-                        <div className='row rounded-4 bg-light shadow-sm fs-4 my-3 d-flex align-items-center' key={ task._id }>
+                        <div 
+                        className='row rounded-4 bg-light shadow-sm fs-4 my-3 d-flex align-items-center row-hover' 
+                        key={ task._id }
+                        >
                             <div className={ `${this.styles.taskCol} ps-4` }>
                                 { task.title }
                             </div>
