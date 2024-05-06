@@ -1,6 +1,6 @@
 export const tasks = [
   {
-    _id: "618c3432eddf61c496096578",
+    _id: "0",
     title: "Stay Hydrated",
     description: "Drink da dew",
     type: "DayToDay",
@@ -8,7 +8,7 @@ export const tasks = [
     complete: false,
   },
   {
-    _id: "618c3459eddf61c49609657a",
+    _id: "1",
     title: "Dishes",
     description: "Do the dishes",
     type: "Home",
@@ -16,7 +16,7 @@ export const tasks = [
     complete: false,
   },
   {
-    _id: "618c345feddf61c49609657c",
+    _id: "2",
     title: "Laundry",
     description: "Do Laundry",
     type: "Home",
@@ -24,7 +24,7 @@ export const tasks = [
     complete: false,
   },
   {
-    _id: "618c3469eddf61c49609657e",
+    _id: "3",
     title: "Report",
     description: "Make Employee Report",
     type: "Work",
@@ -32,7 +32,7 @@ export const tasks = [
     complete: false,
   },
   {
-    _id: "618c3474eddf61c496096580",
+    _id: "4",
     title: "Brush Teeth",
     description: "Brush my Teeth",
     type: "Home",
