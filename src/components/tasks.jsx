@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { tasks } from '../services/tasks'
 import Pagination from './pagination';
+import { paginate } from '../utility/paginate'
 
 
 class Tasks extends Component {
     state = { 
         tasks,
-        pageSize: 5 
+        pageSize: 5,
+        currentPage: 1 
     }
 
     styles = {
@@ -23,25 +25,31 @@ class Tasks extends Component {
     }
 
     pageChange = page => {
-        console.log(page)
+        this.setState({ currentPage: page });
     }
 
+
     render() { 
+        const { length: count } = this.state.tasks;
+        const { pageSize, currentPage, tasks: allTasks } = this.state;
+        
+        const tasks = paginate( allTasks , currentPage, pageSize)
+
         return (
             <React.Fragment>
-                <div className={`${this.styles.horizontalLines} container-xl py-4`} style={{ fontFamily: 'Open sans' }}>
-                    <div className='row rounded-3 fs-1 fw-bold' style={{ letterSpacing: '0.1em' }}>
+                <div className={`${this.styles.horizontalLines} container-xl my-4`} style={{ fontFamily: 'Open sans', height: '509px' }}>
+                    <div className={`${this.styles.horizontalLines} row fs-1 fw-bold`} style={{ letterSpacing: '0.1em' }}>
                         <div className={ `${this.styles.taskCol} ps-4 text-hover-primary` }>TASK</div>
                         <div className={ `${this.styles.descriptionCol}` }>DESCRIPTION</div>
-                        <div className={ `${this.styles.typeCol}` }style={{'&:hover':{ backgroundColor: 'black' }}}>TYPE</div>
+                        <div className={ `${this.styles.typeCol}` }>TYPE</div>
                         <div className={ `${this.styles.completeCol}` }></div>
                     </div>
-                    <div className={`${this.styles.horizontalLines}`}></div>
-                    { this.state.tasks.sort((a, b) => b.severity._id - a.severity._id)
+                    <div className={``}></div>
+                    { tasks.sort((a, b) => b.severity._id - a.severity._id)
                         .map(task => (
                             <div 
-                            className='row rounded-4 bg-light shadow-sm fs-4 my-3 d-flex align-items-center row-hover' 
-                            key={ task._id }
+                                className='row rounded-4 bg-light shadow-sm fs-4 my-3 d-flex align-items-center row-hover' 
+                                key={ task._id }
                             >
                                 <div className={ `${this.styles.taskCol} ps-4` }>
                                     { task.title }
@@ -65,7 +73,12 @@ class Tasks extends Component {
                         ))
                     }
                 </div>
-                <Pagination itemsCount={ this.state.tasks.length } pageSize={ this.state.pageSize } onPageChange={ this.pageChange } />
+                <Pagination 
+                    itemsCount={ count } 
+                    pageSize={ pageSize } 
+                    currentPage={ currentPage }
+                    onPageChange={ this.pageChange } 
+                />
             </React.Fragment>
         );
     }

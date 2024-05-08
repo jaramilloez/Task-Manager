@@ -1,9 +1,19 @@
 import React from 'react';
+import _ from 'lodash';
 
 const Pagination = props => {
-    return <nav className='d-flex justify-content-center mt-3'>
+    const { itemsCount, pageSize, currentPage, onPageChange } = props;
+    const pageCount = Math.ceil(itemsCount / pageSize);
+    if (pageCount === 1) return null
+    const pages = _.range(1, pageCount + 1);
+
+    return <nav className='d-flex justify-content-center py-2'>
         <ul className="pagination" style={{ marginBottom: 0 }}>
-            <li className="page-item"><a className="page-link">1</a></li>
+            { pages.map(page => (
+                <li className={ page === currentPage ? 'page-item active' : 'page-item'} key={ page }>
+                    <button className="page-link" onClick={ () => onPageChange(page) }>{ page }</button>
+                </li>
+            ))}
         </ul>
     </nav>
 }
