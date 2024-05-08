@@ -4,7 +4,10 @@ import Pagination from './pagination';
 
 
 class Tasks extends Component {
-    state = { tasks }
+    state = { 
+        tasks,
+        pageSize: 5 
+    }
 
     styles = {
         taskCol: '       col-lg-3 col-5',
@@ -15,8 +18,12 @@ class Tasks extends Component {
         horizontalLines: 'border-bottom border-3 border-dark-subtle',
     }
 
-    deleteTask = (taskId) => {
+    deleteTask = taskId => {
         this.setState({ tasks: this.state.tasks.filter(c => c._id !== taskId)})
+    }
+
+    pageChange = page => {
+        console.log(page)
     }
 
     render() { 
@@ -58,7 +65,7 @@ class Tasks extends Component {
                         ))
                     }
                 </div>
-                <Pagination />
+                <Pagination itemsCount={ this.state.tasks.length } pageSize={ this.state.pageSize } onPageChange={ this.pageChange } />
             </React.Fragment>
         );
     }
