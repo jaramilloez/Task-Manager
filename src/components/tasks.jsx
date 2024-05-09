@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { tasks } from '../services/tasks'
-import Pagination from './pagination';
+import ListGroup from './listGroup';
 import { paginate } from '../utility/paginate'
+import Pagination from './pagination';
+import { tasks } from '../services/tasks'
 
 
 class Tasks extends Component {
@@ -20,12 +21,20 @@ class Tasks extends Component {
         horizontalLines: 'border-bottom border-3 border-dark-subtle',
     }
 
+    componentDidMount() {
+        this.setState({ tasks })
+    }
+
     deleteTask = taskId => {
         this.setState({ tasks: this.state.tasks.filter(c => c._id !== taskId)})
     }
 
     pageChange = page => {
         this.setState({ currentPage: page });
+    }
+
+    handleTypeSelect = type => {
+        console.log(type);
     }
 
     render() { 
@@ -36,6 +45,7 @@ class Tasks extends Component {
 
         return (
             <React.Fragment>
+                <ListGroup items={tasks.type} onItemSelect={this.handleTypeSelect} />
                 <div className={`${this.styles.horizontalLines} container-xl my-4`} style={{ fontFamily: 'Open sans', height: '509px' }}>
                     <div className={`${this.styles.horizontalLines} row fs-1 fw-bold`} style={{ letterSpacing: '0.1em' }}>
                         <div className={ `${this.styles.taskCol} ps-4 text-hover-primary` }>TASK</div>
@@ -43,7 +53,6 @@ class Tasks extends Component {
                         <div className={ `${this.styles.typeCol}` }>TYPE</div>
                         <div className={ `${this.styles.completeCol}` }></div>
                     </div>
-                    <div className={``}></div>
                     { tasks.sort((a, b) => b.severity._id - a.severity._id)
                         .map(task => (
                             <div 
