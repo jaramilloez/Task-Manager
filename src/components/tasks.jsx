@@ -28,7 +28,6 @@ class Tasks extends Component {
         this.setState({ currentPage: page });
     }
 
-
     render() { 
         const { length: count } = this.state.tasks;
         const { pageSize, currentPage, tasks: allTasks } = this.state;
