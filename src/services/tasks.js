@@ -97,6 +97,14 @@ export const tasks = [
   },
 ];
 
+export const types = [
+  'DayToDay',
+  'Home',
+  'Work'
+]
+
+export function getTasks() { return tasks; }
+
 export function getTask(id) {
   return tasks.find((t) => t._id === id);
 }

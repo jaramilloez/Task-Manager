@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+import { types } from '../services/tasks'
 import ListGroup from './listGroup';
 import { paginate } from '../utility/paginate'
 import Pagination from './pagination';
+import { deleteTask } from '../services/tasks'
 import { tasks } from '../services/tasks'
 
 
 class Tasks extends Component {
     state = { 
-        tasks,
-        pageSize: 5,
+        tasks: [],
+        types: [],
+        pageSize: 10,
         currentPage: 1 
     }
 
@@ -17,16 +20,12 @@ class Tasks extends Component {
         descriptionCol: 'col-lg-5 d-none d-lg-block',
         typeCol: '       col-lg-2 col-4',
         completeCol: '   col-lg-2 col-3',
-        taskCell: 'py-3 border-start border-2',
+        taskCell: 'py-2 border-start border-2',
         horizontalLines: 'border-bottom border-3 border-dark-subtle',
     }
 
     componentDidMount() {
-        this.setState({ tasks })
-    }
-
-    deleteTask = taskId => {
-        this.setState({ tasks: this.state.tasks.filter(c => c._id !== taskId)})
+        this.setState({ tasks: tasks, types: types })
     }
 
     pageChange = page => {
@@ -45,18 +44,18 @@ class Tasks extends Component {
 
         return (
             <React.Fragment>
-                <ListGroup items={tasks.type} onItemSelect={this.handleTypeSelect} />
-                <div className={`${this.styles.horizontalLines} container-xl my-4`} style={{ fontFamily: 'Open sans', height: '509px' }}>
+                <div className={`${this.styles.horizontalLines} container-xl my-4 position-relative`} style={{ fontFamily: 'Open sans', height: '' }}>
                     <div className={`${this.styles.horizontalLines} row fs-1 fw-bold`} style={{ letterSpacing: '0.1em' }}>
                         <div className={ `${this.styles.taskCol} ps-4 text-hover-primary` }>TASK</div>
                         <div className={ `${this.styles.descriptionCol}` }>DESCRIPTION</div>
                         <div className={ `${this.styles.typeCol}` }>TYPE</div>
                         <div className={ `${this.styles.completeCol}` }></div>
                     </div>
+                    <ListGroup items={ this.state.types } onItemSelect={ this.handleTypeSelect } />
                     { tasks.sort((a, b) => b.severity._id - a.severity._id)
                         .map(task => (
                             <div 
-                                className='row rounded-4 bg-light shadow-sm fs-4 my-3 d-flex align-items-center row-hover' 
+                                className='row rounded-4 bg-light shadow-sm fs-4 mb-3 d-flex align-items-center row-hover' 
                                 key={ task._id }
                             >
                                 <div className={ `${this.styles.taskCol} ps-4` }>
@@ -72,7 +71,7 @@ class Tasks extends Component {
                                     <button 
                                         type='button' 
                                         className='btn btn-outline-success'
-                                        onClick={ () => this.deleteTask(task._id) }
+                                        onClick={ () => deleteTask(task._id) }
                                     >
                                         Complete
                                     </button>
