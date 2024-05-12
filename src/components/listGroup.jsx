@@ -1,12 +1,12 @@
 import React from 'react';
 
 const ListGroup = props => {
-    const { items } = props;
+    const { items, textProperty, valueProperty } = props;
 
-    return <ul class="list-group list-group-horizontal d-flex justify-content-end m-1">
+    return <ul className="list-group list-group-horizontal d-flex justify-content-end m-1">
         { items.map(item => (
-            <li className='list-group-item' key={ item._id }>
-                { item }
+            <li className='list-group-item' key={ item[valueProperty] }>
+                { item[textProperty] }
             </li>
         ))}
   </ul>;

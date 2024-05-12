@@ -28,7 +28,7 @@ class Tasks extends Component {
         this.setState({ tasks: tasks, types: types })
     }
 
-    pageChange = page => {
+    handlePageChange = page => {
         this.setState({ currentPage: page });
     }
 
@@ -51,7 +51,12 @@ class Tasks extends Component {
                         <div className={ `${this.styles.typeCol}` }>TYPE</div>
                         <div className={ `${this.styles.completeCol}` }></div>
                     </div>
-                    <ListGroup items={ this.state.types } onItemSelect={ this.handleTypeSelect } />
+                    <ListGroup 
+                        items={ this.state.types } 
+                        textProperty='name'
+                        valueProperty='_id'
+                        onItemSelect={ this.handleTypeSelect } 
+                    />
                     { tasks.sort((a, b) => b.severity._id - a.severity._id)
                         .map(task => (
                             <div 
@@ -84,7 +89,7 @@ class Tasks extends Component {
                     itemsCount={ count } 
                     pageSize={ pageSize } 
                     currentPage={ currentPage }
-                    onPageChange={ this.pageChange } 
+                    onPageChange={ this.handlePageChange } 
                 />
             </React.Fragment>
         );

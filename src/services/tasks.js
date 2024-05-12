@@ -98,9 +98,18 @@ export const tasks = [
 ];
 
 export const types = [
-  'DayToDay',
-  'Home',
-  'Work'
+  {
+    _id: '0',
+    name: 'DayToDay'
+  },
+  {
+    _id: '1',
+    name: 'Home'
+  },
+  {
+    _id: '2',
+    name: 'Work'
+  },
 ]
 
 export function getTasks() { return tasks; }
