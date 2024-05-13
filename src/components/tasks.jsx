@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { types } from '../services/tasks'
+import { getTypes } from '../services/tasks'
 import ListGroup from './listGroup';
 import { paginate } from '../utility/paginate'
 import Pagination from './pagination';
 import { deleteTask } from '../services/tasks'
-import { tasks } from '../services/tasks'
+import { getTasks } from '../services/tasks'
 
 
 class Tasks extends Component {
@@ -25,7 +25,8 @@ class Tasks extends Component {
     }
 
     componentDidMount() {
-        this.setState({ tasks: tasks, types: types })
+        const types = [{ name: 'All' }, ...getTypes()]
+        this.setState({ tasks: getTasks(), types })
     }
 
     handlePageChange = page => {
@@ -33,65 +34,70 @@ class Tasks extends Component {
     }
 
     handleTypeSelect = type => {
-        console.log(type);
+        this.setState({ selectedType: type, currentPage: 1 })
     }
 
     render() { 
-        const { length: count } = this.state.tasks;
-        const { pageSize, currentPage, tasks: allTasks } = this.state;
-        
-        const tasks = paginate( allTasks , currentPage, pageSize)
+        const { pageSize, currentPage, selectedType, tasks: allTasks } = this.state;
+        const filtered = selectedType && selectedType._id
+            ? allTasks.filter(t => t.type._id === selectedType._id) 
+            : allTasks;
+        const tasks = paginate( filtered, currentPage, pageSize);
 
         return (
-            <React.Fragment>
-                <div className={`${this.styles.horizontalLines} container-xl my-4 position-relative`} style={{ fontFamily: 'Open sans', height: '' }}>
-                    <div className={`${this.styles.horizontalLines} row fs-1 fw-bold`} style={{ letterSpacing: '0.1em' }}>
-                        <div className={ `${this.styles.taskCol} ps-4 text-hover-primary` }>TASK</div>
-                        <div className={ `${this.styles.descriptionCol}` }>DESCRIPTION</div>
-                        <div className={ `${this.styles.typeCol}` }>TYPE</div>
-                        <div className={ `${this.styles.completeCol}` }></div>
-                    </div>
+            <div className='container-xxl d-flex justify-content-center' style={{ fontFamily: 'Open sans'}}>
+                <div className='col-2 d-none d-md-block me-3 position-relative' style={{ top: '90px' }}>
                     <ListGroup 
                         items={ this.state.types } 
-                        textProperty='name'
-                        valueProperty='_id'
+                        selectedItem={ this.state.selectedType }
                         onItemSelect={ this.handleTypeSelect } 
                     />
-                    { tasks.sort((a, b) => b.severity._id - a.severity._id)
-                        .map(task => (
-                            <div 
-                                className='row rounded-4 bg-light shadow-sm fs-4 mb-3 d-flex align-items-center row-hover' 
-                                key={ task._id }
-                            >
-                                <div className={ `${this.styles.taskCol} ps-4` }>
-                                    { task.title }
-                                </div>
-                                <div className={ `${this.styles.descriptionCol} ${this.styles.taskCell}` }>
-                                    { task.description }
-                                </div>
-                                <div className={ `${this.styles.typeCol} ${this.styles.taskCell} py-2 border-start border-2` }>
-                                    { task.type }
-                                </div>
-                                <div className={ `${this.styles.completeCol} ${this.styles.taskCell} d-flex align-items-center justify-content-center` }>
-                                    <button 
-                                        type='button' 
-                                        className='btn btn-outline-success'
-                                        onClick={ () => deleteTask(task._id) }
-                                    >
-                                        Complete
-                                    </button>
-                                </div>
-                            </div>
-                        ))
-                    }
                 </div>
-                <Pagination 
-                    itemsCount={ count } 
-                    pageSize={ pageSize } 
-                    currentPage={ currentPage }
-                    onPageChange={ this.handlePageChange } 
-                />
-            </React.Fragment>
+                <div className='col-12 col-lg-10'>
+                    <div className={`${this.styles.horizontalLines} container-fluid mt-4 position-relative overflow-x-hidden`} style={{ height: '695px' }}>
+                        <div className={`${this.styles.horizontalLines} row fs-1 fw-bold`} style={{ letterSpacing: '0.1em' }}>
+                            <div className={ `${this.styles.taskCol} ps-4 text-hover-primary` }>TASK</div>
+                            <div className={ `${this.styles.descriptionCol}` }>DESCRIPTION</div>
+                            <div className={ `${this.styles.typeCol}` }>TYPE</div>
+                            <div className={ `${this.styles.completeCol}` }></div>
+                        </div>
+                        { tasks.sort((a, b) => b.severity._id - a.severity._id)
+                            .map(task => (
+                                <div 
+                                    className='row rounded-4 bg-light shadow-sm fs-5 my-2 d-flex align-items-center row-hover' 
+                                    key={ task._id }
+                                >
+                                    <div className={ `${this.styles.taskCol} ps-4` }>
+                                        { task.title }
+                                    </div>
+                                    <div className={ `${this.styles.descriptionCol} ${this.styles.taskCell}` }>
+                                        { task.description }
+                                    </div>
+                                    <div className={ `${this.styles.typeCol} ${this.styles.taskCell} py-2 border-start border-2` }>
+                                        { task.type.name }
+                                    </div>
+                                    <div className={ `${this.styles.completeCol} ${this.styles.taskCell} d-flex align-items-center justify-content-center` }>
+                                        <button 
+                                            type='button' 
+                                            className='btn btn-outline-success'
+                                            onClick={ () => deleteTask(task._id) }
+                                        >
+                                            Complete
+                                        </button>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                    <p className='m-0 p-2 pb-0 fs-6 fst-italic'>There are {filtered.length} tasks.</p>
+                    <Pagination 
+                        itemsCount={ filtered.length } 
+                        pageSize={ pageSize } 
+                        currentPage={ currentPage }
+                        onPageChange={ this.handlePageChange } 
+                    />
+                </div>
+            </div>
         );
     }
 }
