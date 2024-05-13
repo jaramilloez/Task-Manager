@@ -9,7 +9,7 @@ const ListGroup = props => {
             { items.map((item, index) => (
                 <li 
                     onClick={ () => onItemSelect(item) } 
-                    key={ item[textProperty] } 
+                    key={ item[valueProperty] } 
                     className={ selectedItem == null 
                         ? index === 0
                             ? 'list-group-item active'
