@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash'
 import TasksTable from './tasksTable';
 import { getTypes } from '../services/tasks'
 import ListGroup from './listGroup';
@@ -13,7 +14,8 @@ class Tasks extends Component {
         tasks: [],
         types: [],
         pageSize: 10,
-        currentPage: 1 
+        currentPage: 1,
+        sortColumn: { path: 'severity._id', order: 'desc' },
     }
 
     componentDidMount() {
@@ -34,12 +36,34 @@ class Tasks extends Component {
         this.setState({ selectedType: type, currentPage: 1 })
     }
 
+    handleSort = path => {
+        const sortColumn = { ...this.state.sortColumn };
+        if (sortColumn.path === path){
+            if (sortColumn.path === 'severity._id' && sortColumn.order === 'desc'){
+                sortColumn.path = path;
+                sortColumn.order = 'asc'
+            } else if (sortColumn.order === 'asc'){
+                sortColumn.order = 'desc';
+            } else{
+                sortColumn.path = 'severity._id';
+            }
+        }
+        else {
+            sortColumn.path = path;
+            sortColumn.order = 'asc'
+        }
+        this.setState({ sortColumn })
+    }
+
     render() { 
-        const { pageSize, currentPage, selectedType, tasks: allTasks } = this.state;
+        const { pageSize, currentPage, sortColumn, selectedType, tasks: allTasks } = this.state;
+
         const filtered = selectedType && selectedType._id
             ? allTasks.filter(t => t.type._id === selectedType._id) 
             : allTasks;
-        const tasks = paginate( filtered, currentPage, pageSize);
+        
+        const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order])
+        const tasks = paginate( sorted, currentPage, pageSize);
 
         return (
             <div className='container-xxl d-flex justify-content-center' style={{ fontFamily: 'Open sans'}}>
@@ -54,7 +78,7 @@ class Tasks extends Component {
                     <TasksTable 
                         tasks={ tasks } 
                         onDelete={ this.handleDelete} 
-                        styles={ this.styles }
+                        onSort={ this.handleSort }
                     />
                     <p className='m-0 p-2 pb-0 fs-6 fst-italic'>There are {filtered.length} tasks.</p>
                     <Pagination 

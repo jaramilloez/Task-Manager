@@ -112,7 +112,9 @@ export const types = [
   },
 ]
 
-export function getTasks() { return tasks; }
+export function getTasks() { 
+  return tasks; 
+}
 
 export function getTypes() { return types; }
 
