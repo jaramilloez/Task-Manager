@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const TasksTable = props => {
-    const { tasks, onDelete, onSort } = props;
+class TasksTable extends Component {
+    raiseSort = path => {
+        const sortColumn = { ...this.props.sortColumn };
+        if (sortColumn.path === path){
+            if (sortColumn.path === 'severity._id' && sortColumn.order === 'desc'){
+                sortColumn.path = path;
+                sortColumn.order = 'asc'
+            } else if (sortColumn.order === 'asc'){
+                sortColumn.order = 'desc';
+            } else{
+                sortColumn.path = 'severity._id';
+            }
+        }
+        else {
+            sortColumn.path = path;
+            sortColumn.order = 'asc'
+        }
+        this.props.onSort(sortColumn)
+    }
+
+    render() { 
+    const { tasks, onDelete } = this.props;
 
     const styles = {
         taskCol: '       col-lg-3 col-5',
@@ -15,9 +35,9 @@ const TasksTable = props => {
     return ( 
         <div className={`${styles.horizontalLines} container-fluid mt-4 position-relative overflow-x-hidden`} style={{ height: '695px' }}>
             <div className={`${styles.horizontalLines} row fs-1 fw-bold`} style={{ letterSpacing: '0.1em' }}>
-                <div onClick={ () => onSort('title') } className={ `${styles.taskCol} ps-4 text-hover-primary` }>TASK</div>
-                <div onClick={ () => onSort('description') } className={ `${styles.descriptionCol}` }>DESCRIPTION</div>
-                <div onClick={ () => onSort('type.name') } className={ `${styles.typeCol}` }>TYPE</div>
+                <div onClick={ () => this.raiseSort('title') } className={ `${styles.taskCol} ps-4 text-hover-primary` }>TASK</div>
+                <div onClick={ () => this.raiseSort('description') } className={ `${styles.descriptionCol}` }>DESCRIPTION</div>
+                <div onClick={ () => this.raiseSort('type.name') } className={ `${styles.typeCol}` }>TYPE</div>
                 <div className={ `${styles.completeCol}` }></div>
             </div>
             { tasks.map(task => (
@@ -48,6 +68,7 @@ const TasksTable = props => {
             }
         </div>
      );
+    }
 }
  
 export default TasksTable;

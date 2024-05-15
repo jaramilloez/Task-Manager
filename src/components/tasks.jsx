@@ -36,22 +36,7 @@ class Tasks extends Component {
         this.setState({ selectedType: type, currentPage: 1 })
     }
 
-    handleSort = path => {
-        const sortColumn = { ...this.state.sortColumn };
-        if (sortColumn.path === path){
-            if (sortColumn.path === 'severity._id' && sortColumn.order === 'desc'){
-                sortColumn.path = path;
-                sortColumn.order = 'asc'
-            } else if (sortColumn.order === 'asc'){
-                sortColumn.order = 'desc';
-            } else{
-                sortColumn.path = 'severity._id';
-            }
-        }
-        else {
-            sortColumn.path = path;
-            sortColumn.order = 'asc'
-        }
+    handleSort = sortColumn => {
         this.setState({ sortColumn })
     }
 
@@ -77,6 +62,7 @@ class Tasks extends Component {
                 <div className='col-12 col-lg-10'>
                     <TasksTable 
                         tasks={ tasks } 
+                        sortColumn={ sortColumn }
                         onDelete={ this.handleDelete} 
                         onSort={ this.handleSort }
                     />
