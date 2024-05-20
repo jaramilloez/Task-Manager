@@ -1,9 +1,15 @@
+import NavBar from './components/navBar'
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Tasks from './components/tasks'
 
 function App() {
   return (
-    <Tasks />
+    <div className='content'>
+      <Switch>
+        <Route path='/' component={Tasks} />
+      </Switch>
+    </div>
   );
 }
 
