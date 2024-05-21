@@ -8,7 +8,7 @@ class TasksTable extends Component {
     const { tasks, onDelete, onSort, sortColumn } = this.props;
 
     return ( 
-        <div className={`${styles.horizontalLines} container-fluid mt-4 position-relative overflow-x-hidden`} style={{ height: '695px' }}>
+        <div className={`${styles.horizontalLines} container-fluid mt-4 position-relative overflow-visible`} style={{ height: '695px' }}>
             <TableHeader sortColumn={ sortColumn } onSort={ onSort } />
             <TableBody data={ tasks } onDelete={ onDelete } />
         </div>
