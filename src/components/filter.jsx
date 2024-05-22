@@ -1,7 +1,19 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
 
-const ListGroup = props => {
+const Filter = props => {
     const { items, textProperty, valueProperty, selectedItem, onItemSelect } = props;
+
+    activeFilter = item => {
+        if(selectedItem == null){
+            if(index === 0) return true;
+            else return false
+        }else{
+            if(item === selectedItem) return true;
+            else return false;
+        }
+    }
 
     return (
         <ul className="list-group">
@@ -10,7 +22,7 @@ const ListGroup = props => {
                 <li 
                     onClick={ () => onItemSelect(item) } 
                     key={ item[valueProperty] } 
-                    className={ selectedItem == null 
+                    className={` ${selectedItem == null 
                         ? index === 0
                             ? 'list-group-item active'
                             : 'list-group-item'
@@ -18,6 +30,8 @@ const ListGroup = props => {
                             ? 'list-group-item active' 
                             : 'list-group-item' 
                     }
+                        cursorPointer
+                    `}
                 >
                     { item[textProperty] }
                 </li>
@@ -26,9 +40,9 @@ const ListGroup = props => {
     )
 };
 
-ListGroup.defaultProps = {
+Filter.defaultProps = {
     textProperty: 'name',
     valueProperty: '_id'
 };
 
-export default ListGroup;
+export default Filter;

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSortUp } from '@fortawesome/free-solid-svg-icons'
-import { faSortDown } from '@fortawesome/free-solid-svg-icons'
-import styles from '../utility/commonStyles'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSortUp } from '@fortawesome/free-solid-svg-icons';
+import { faSortDown } from '@fortawesome/free-solid-svg-icons';
+import styles from '../utility/commonStyles';
 
 class TableHeader extends Component { 
     raiseSort = path => {
@@ -34,14 +34,14 @@ class TableHeader extends Component {
 
     render() { 
         return (
-            <div className={`${styles.horizontalLines} row fs-1 fw-bold`} style={{ letterSpacing: '0.1em' }}>
-                <div onClick={ () => this.raiseSort('title') } className={ `${styles.taskCol} ps-4 text-hover-primary` }>
+            <div className='row fs-1 fw-bold' style={{ letterSpacing: '0.1em' }}>
+                <div onClick={ () => this.raiseSort('title') } className={ `${styles.taskCol} ps-4 text-hover-primary cursorPointer` }>
                     TASK{ this.renderSortIcon('title') }
                 </div>
-                <div onClick={ () => this.raiseSort('description') } className={ `${styles.descriptionCol}` }>
+                <div onClick={ () => this.raiseSort('description') } className={ `${styles.descriptionCol} cursorPointer` }>
                     DESCRIPTION{ this.renderSortIcon('description') }
                 </div>
-                <div onClick={ () => this.raiseSort('type.name') } className={ `${styles.typeCol}` }>
+                <div onClick={ () => this.raiseSort('type.name') } className={ `${styles.typeCol} cursorPointer` }>
                     TYPE{ this.renderSortIcon('type.name') }
                 </div>
                 <div className={ `${styles.completeCol}` }></div>

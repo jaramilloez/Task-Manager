@@ -44,3 +44,7 @@
 .pagination .page-link:focus {
   box-shadow: none;
 }
+
+.cursorPointer {
+  cursor: pointer;
+}

@@ -5,7 +5,7 @@ import Tasks from './components/tasks'
 
 function App() {
   return (
-    <div className='min-vh-100 d-flex flex-column justify-content-between'>
+    <div>
       <NavBar />
       <Switch>
         <Route path='/' component={Tasks} />

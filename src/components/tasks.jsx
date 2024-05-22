@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import _ from 'lodash'
 import TasksTable from './tasksTable';
 import { getTypes } from '../services/tasks'
-import ListGroup from './listGroup';
+import Filter from './filter';
 import { paginate } from '../utility/paginate'
 import Pagination from './pagination';
 import { deleteTask } from '../services/tasks'
@@ -60,7 +60,7 @@ class Tasks extends Component {
         return (
             <div className='container-xxl d-flex justify-content-center' style={{ fontFamily: 'Open sans'}}>
                 <div className='col-2 d-none d-md-block me-3 position-relative' style={{ top: '90px' }}>
-                    <ListGroup 
+                    <Filter 
                         items={ this.state.types } 
                         selectedItem={ this.state.selectedType }
                         onItemSelect={ this.handleTypeSelect } 
