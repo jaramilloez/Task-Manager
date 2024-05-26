@@ -5,7 +5,7 @@ import { faCircle } from '@fortawesome/free-solid-svg-icons';
 const Filter = props => {
     const { items, textProperty, valueProperty, selectedItem, onItemSelect } = props;
 
-    activeFilter = item => {
+    const isActive = (item, index) => {
         if(selectedItem == null){
             if(index === 0) return true;
             else return false
@@ -22,18 +22,14 @@ const Filter = props => {
                 <li 
                     onClick={ () => onItemSelect(item) } 
                     key={ item[valueProperty] } 
-                    className={` ${selectedItem == null 
-                        ? index === 0
-                            ? 'list-group-item active'
-                            : 'list-group-item'
-                        : item === selectedItem 
-                            ? 'list-group-item active' 
-                            : 'list-group-item' 
+                    className={` ${isActive(item, index) === true 
+                        ? 'list-group-item '
+                        : 'list-group-item'
                     }
                         cursorPointer
                     `}
                 >
-                    { item[textProperty] }
+                    {isActive(item, index) && <FontAwesomeIcon icon={faCircle} style={{ color: '#0d6efd' }} />} { item[textProperty] }
                 </li>
             ))}
         </ul>

@@ -30,6 +30,7 @@ class Tasks extends Component {
 
     handlePageChange = page => {
         this.setState({ currentPage: page });
+        window.scrollTo({ top: 0 })
     }
 
     handleTypeSelect = type => {
@@ -49,13 +50,13 @@ class Tasks extends Component {
         
         const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order])
         const tasks = paginate( sorted, currentPage, pageSize);
-        return { totalCount: filtered.length, data: tasks }
+        return { itemsCount: filtered.length, data: tasks }
 
     }
 
     render() { 
         const { pageSize, currentPage, sortColumn } = this.state;
-        const { totalCount, data: tasks } = this.getPagedData();
+        const { itemsCount, data: tasks } = this.getPagedData();
 
         return (
             <div className='container-xxl d-flex justify-content-center' style={{ fontFamily: 'Open sans'}}>
@@ -73,9 +74,9 @@ class Tasks extends Component {
                         onDelete={ this.handleDelete} 
                         onSort={ this.handleSort }
                     />
-                    <p className='m-0 p-2 pb-0 fs-6 fst-italic'>There are { totalCount } tasks.</p>
+                    <p className='m-0 p-2 pb-0 fs-6 fst-italic'>{ itemsCount } results</p>
                     <Pagination 
-                        itemsCount={ totalCount } 
+                        itemsCount={ itemsCount } 
                         pageSize={ pageSize } 
                         currentPage={ currentPage }
                         onPageChange={ this.handlePageChange } 

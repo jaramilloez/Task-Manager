@@ -8,15 +8,17 @@ const Pagination = props => {
     if (pageCount === 1) return null
     const pages = _.range(1, pageCount + 1);
 
-    return <nav className='d-flex justify-content-center py-2'>
-        <ul className="pagination" style={{ marginBottom: 0 }}>
-            { pages.map(page => (
-                <li className={ page === currentPage ? 'page-item active' : 'page-item'} key={ page }>
-                    <button className="page-link" onClick={ () => onPageChange(page) }>{ page }</button>
-                </li>
-            ))}
-        </ul>
-    </nav>
+    return <div>
+        <nav className='d-flex justify-content-center py-2'>
+            <ul className="pagination" style={{ marginBottom: 0 }}>
+                { pages.map(page => (
+                    <li className={ page === currentPage ? 'page-item active' : 'page-item'} key={ page }>
+                        <button className="page-link" onClick={ () => onPageChange(page) }>{ page }</button>
+                    </li>
+                ))}
+            </ul>
+        </nav>
+    </div>
 }
 
 Pagination.propTypes = {
