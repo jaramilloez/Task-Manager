@@ -26,7 +26,7 @@ const Filter = props => {
                         ? 'list-group-item '
                         : 'list-group-item'
                     }
-                        cursorPointer
+                        cursorPointer fs-5
                     `}
                 >
                     {isActive(item, index) && <FontAwesomeIcon icon={faCircle} style={{ color: '#0d6efd' }} />} { item[textProperty] }

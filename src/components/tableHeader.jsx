@@ -34,7 +34,7 @@ class TableHeader extends Component {
 
     render() { 
         return (
-            <div className='row fs-1 fw-bold' style={{ letterSpacing: '0.1em' }}>
+            <div className='row fs-2 fw-bold' style={{ letterSpacing: '0.1em' }}>
                 <div onClick={ () => this.raiseSort('title') } className={ `${styles.taskCol} ps-4 text-hover-primary cursorPointer` }>
                     TASK{ this.renderSortIcon('title') }
                 </div>

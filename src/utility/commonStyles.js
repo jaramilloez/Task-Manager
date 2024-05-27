@@ -5,5 +5,7 @@ const styles = {
     completeCol: '   col-lg-2 col-3',
     taskCell: 'py-2 border-start border-2',
     horizontalLines: 'border-bottom border-3 border-dark-subtle',
+    navLink: 'px-4 fs-5',
+    navTitle: 'p-3 fs-2 fw-bold',
 }
 export default styles;

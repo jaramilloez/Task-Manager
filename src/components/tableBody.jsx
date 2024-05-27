@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import styles from '../utility/commonStyles';
 
 class TableBody extends Component { 
@@ -7,9 +8,10 @@ class TableBody extends Component {
         return (
             <div>
                 { data.map(item => (
-                    <div 
-                    className='row rounded-4 bg-light shadow-sm fs-5 my-2 d-flex align-items-center row-hover' 
-                    key={ item._id }
+                    <Link 
+                        className='row rounded-4 bg-light shadow-sm fs-5 my-2 d-flex align-items-center row-hover text-black text-decoration-none' 
+                        key={ item._id }
+                        to={`/aTask/${item._id}`}
                     >
                         <div className={ `${styles.taskCol} ps-4` }>
                             { item.title }
@@ -29,7 +31,7 @@ class TableBody extends Component {
                                 Complete
                             </button>
                         </div>
-                    </div>
+                    </Link>
                 ))
                 }
             </div>
