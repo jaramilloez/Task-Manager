@@ -15,25 +15,23 @@ const Filter = props => {
         }
     }
 
-    return (
-        <ul className="list-group">
-            <li className='list-group-item fs-5 fw-bold'>Filter by type</li>
-            { items.map((item, index) => (
-                <li 
-                    onClick={ () => onItemSelect(item) } 
-                    key={ item[valueProperty] } 
-                    className={` ${isActive(item, index) === true 
-                        ? 'list-group-item '
-                        : 'list-group-item'
-                    }
-                        cursorPointer fs-5
-                    `}
-                >
-                    {isActive(item, index) && <FontAwesomeIcon icon={faCircle} style={{ color: '#0d6efd' }} />} { item[textProperty] }
-                </li>
-            ))}
-        </ul>
-    )
+    return <ul className="list-group">
+        <li className='list-group-item fs-5 fw-bold'>Filter by type</li>
+        { items.map((item, index) => (
+            <li 
+                onClick={ () => onItemSelect(item) } 
+                key={ item[valueProperty] } 
+                className={` ${isActive(item, index) === true 
+                    ? 'list-group-item '
+                    : 'list-group-item'
+                }
+                    cursorPointer fs-5
+                `}
+            >
+                {isActive(item, index) && <FontAwesomeIcon icon={faCircle} style={{ color: '#0d6efd' }} />} { item[textProperty] }
+            </li>
+        ))}
+    </ul>
 };
 
 Filter.defaultProps = {

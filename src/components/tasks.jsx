@@ -58,32 +58,30 @@ class Tasks extends Component {
         const { pageSize, currentPage, sortColumn } = this.state;
         const { itemsCount, data: tasks } = this.getPagedData();
 
-        return (
-            <div className='container-xxl d-flex justify-content-center' style={{ fontFamily: 'Open sans'}}>
-                <div className='col-2 d-none d-md-block me-3 position-relative' style={{ top: '90px' }}>
-                    <Filter 
-                        items={ this.state.types } 
-                        selectedItem={ this.state.selectedType }
-                        onItemSelect={ this.handleTypeSelect } 
-                    />
-                </div>
-                <div className='col-12 col-lg-10'>
-                    <TasksTable 
-                        tasks={ tasks } 
-                        sortColumn={ sortColumn }
-                        onDelete={ this.handleDelete} 
-                        onSort={ this.handleSort }
-                    />
-                    <p className='m-0 p-2 pb-0 fs-6 fst-italic'>{ itemsCount } results</p>
-                    <Pagination 
-                        itemsCount={ itemsCount } 
-                        pageSize={ pageSize } 
-                        currentPage={ currentPage }
-                        onPageChange={ this.handlePageChange } 
-                    />
-                </div>
+        return <div className='container-xxl d-flex justify-content-center' style={{ fontFamily: 'Open sans'}}>
+            <div className='col-2 d-none d-md-block me-3 position-relative' style={{ top: '90px' }}>
+                <Filter 
+                    items={ this.state.types } 
+                    selectedItem={ this.state.selectedType }
+                    onItemSelect={ this.handleTypeSelect } 
+                />
             </div>
-        );
+            <div className='col-12 col-lg-10'>
+                <TasksTable 
+                    tasks={ tasks } 
+                    sortColumn={ sortColumn }
+                    onDelete={ this.handleDelete} 
+                    onSort={ this.handleSort }
+                />
+                <p className='m-0 p-2 pb-0 fs-6 fst-italic'>{ itemsCount } results</p>
+                <Pagination 
+                    itemsCount={ itemsCount } 
+                    pageSize={ pageSize } 
+                    currentPage={ currentPage }
+                    onPageChange={ this.handlePageChange } 
+                />
+            </div>
+        </div>;
     }
 }
 
