@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Admin from './components/admin'
 import SignUp from './components/signUp'
 import LogIn from './components/logIn'
@@ -18,7 +18,8 @@ function App() {
         <Route path='/logIn' component={LogIn} />
         <Route path='/aTask/:id' component={ATask} />
         <Route path='/notFound' component={NotFound} />
-        <Route path='/' component={Tasks} />
+        <Route path='/' exact component={Tasks} />
+        <Redirect to='/notFound' />
       </Switch>
     </div>
   );
