@@ -7,7 +7,7 @@ class ATask extends Component {
     render() { 
         return <div className="container">
             <div>
-                {this.props.match.params.id}
+                {this.props.match.params.title}
             </div>
             <button onClick={this.handleSave}>Save</button>
         </div>

@@ -13,7 +13,7 @@ function App() {
     <div>
       <NavBar />
       <Switch>
-        <Route path='/aTask/:id' component={ATask} />
+        <Route path='/aTask/:id/:title' component={ATask} />
         <Route path='/admin' component={Admin} />
         <Route path='/SignUp' component={SignUp} />
         <Route path='/logIn' component={LogIn} />
