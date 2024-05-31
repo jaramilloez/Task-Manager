@@ -13,10 +13,10 @@ function App() {
     <div>
       <NavBar />
       <Switch>
+        <Route path='/aTask/:id' component={ATask} />
         <Route path='/admin' component={Admin} />
         <Route path='/SignUp' component={SignUp} />
         <Route path='/logIn' component={LogIn} />
-        <Route path='/aTask/:id' component={ATask} />
         <Route path='/notFound' component={NotFound} />
         <Route path='/' exact component={Tasks} />
         <Redirect to='/notFound' />
