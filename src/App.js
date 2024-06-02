@@ -5,8 +5,8 @@ import LogIn from './components/logIn'
 import ATask from './components/aTask'
 import NotFound from './components/notFound'
 import NavBar from './components/navBar'
-import './App.css';
 import Tasks from './components/tasks'
+import './App.css';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
       <Switch>
         <Route path='/aTask/:id/:title' component={ATask} />
         <Route path='/admin' component={Admin} />
-        <Route path='/SignUp' component={SignUp} />
+        <Route path='/signUp' component={SignUp} />
         <Route path='/logIn' component={LogIn} />
         <Route path='/notFound' component={NotFound} />
         <Route path='/' exact component={Tasks} />
