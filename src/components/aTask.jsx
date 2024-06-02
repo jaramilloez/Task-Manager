@@ -6,10 +6,10 @@ class ATask extends Component {
     }
     render() { 
         return <div className="container">
-            <div>
+            <div className='fs-2 fw-bold'>
                 {this.props.match.params.title}
             </div>
-            <button onClick={this.handleSave}>Save</button>
+            <button className='btn btn-primary' onClick={this.handleSave}>Save</button>
         </div>
     }
 }
