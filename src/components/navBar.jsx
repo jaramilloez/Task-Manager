@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from '../utility/commonStyles';
 
 const NavBar = () => {
-    return <nav className='bg-light d-flex justify-content-between align-items-center px-4'>
+    return <nav className='bg-light d-flex justify-content-between align-items-center px-4 text-nowrap'>
         <div className={ `${styles.navTitle}` }>
             My To Dos
         </div>
@@ -12,7 +12,7 @@ const NavBar = () => {
                 <Link to="/">Home</Link>
             </li>
             <li className={ `${styles.navLink}` }>
-                <Link to="/login">Log in</Link>
+                <Link to="/login">Log In</Link>
             </li>
             <li className={ `${styles.navLink}` }>
                 <Link to='/admin'>Admin</Link>

@@ -58,7 +58,7 @@ class Tasks extends Component {
         const { pageSize, currentPage, sortColumn } = this.state;
         const { itemsCount, data: tasks } = this.getPagedData();
 
-        return <div className='container-xxl d-flex justify-content-center' style={{ fontFamily: 'Open sans'}}>
+        return <div className='container-xxl d-flex justify-content-center mt-4' style={{ fontFamily: 'Open sans'}}>
             <div className='col-2 d-none d-md-block me-3 position-relative' style={{ top: '90px' }}>
                 <Filter 
                     items={ this.state.types } 
@@ -66,7 +66,7 @@ class Tasks extends Component {
                     onItemSelect={ this.handleTypeSelect } 
                 />
             </div>
-            <div className='col-12 col-lg-10'>
+            <div className='col-10'>
                 <TasksTable 
                     tasks={ tasks } 
                     sortColumn={ sortColumn }

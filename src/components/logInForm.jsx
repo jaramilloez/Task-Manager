@@ -27,7 +27,7 @@ class LogIn extends Form {
     }
 
     render() { 
-        return <div className='container'>
+        return <div className='container d-flex justify-content-center mt-4 flex-column' style={{ paddingLeft: '20%', paddingRight: '20%' }}>
             <div className='fs-2 fw-bold'>
                 Log In
             </div>

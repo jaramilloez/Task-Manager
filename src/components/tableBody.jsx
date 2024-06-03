@@ -24,7 +24,7 @@ class TableBody extends Component {
                     <div className={ `${styles.completeCol} ${styles.taskCell} d-flex align-items-center justify-content-center` }>
                         <button 
                             type='button' 
-                            className='btn btn-outline-success'
+                            className='btn btn-outline-success px-2'
                             onClick={ () => onDelete(item._id) }
                         >
                             Complete

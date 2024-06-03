@@ -16,7 +16,7 @@ const Filter = props => {
     }
 
     return <ul className="list-group">
-        <li className='list-group-item fs-5 fw-bold'>Filter by type</li>
+        <li className='list-group-item fs-5 fw-bold pe-3'>Filter by type</li>
         { items.map((item, index) => (
             <li 
                 onClick={ () => onItemSelect(item) } 
