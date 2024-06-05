@@ -15,7 +15,7 @@ const Filter = props => {
         }
     }
 
-    return <ul className="list-group">
+    return <ul className="pe-0 list-group">
         <li className='list-group-item fs-5 fw-bold pe-3'>Filter by type</li>
         { items.map((item, index) => (
             <li 

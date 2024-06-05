@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash'
+import { Link } from 'react-router-dom'
 import TasksTable from './tasksTable';
 import { getTypes } from '../services/tasks'
 import Filter from './filter';
@@ -59,12 +60,17 @@ class Tasks extends Component {
         const { itemsCount, data: tasks } = this.getPagedData();
 
         return <div className='container-xxl d-flex justify-content-center' style={{ fontFamily: 'Open sans'}}>
-            <div className='col-2 d-none d-md-block me-3 position-relative' style={{ top: '90px' }}>
-                <Filter 
-                    items={ this.state.types } 
-                    selectedItem={ this.state.selectedType }
-                    onItemSelect={ this.handleTypeSelect } 
-                />
+            <div className='me-3 col-2 d-none d-md-block position-relative' style={{ top: '60px' }}>
+                <div className='row'>
+                    <button className='px-3 btn btn-primary rounded-pill'>Add new task</button>
+                </div>
+                <div className='row'>
+                    <Filter 
+                        items={ this.state.types } 
+                        selectedItem={ this.state.selectedType }
+                        onItemSelect={ this.handleTypeSelect } 
+                    />
+                </div>
             </div>
             <div className='col-10'>
                 <TasksTable 
