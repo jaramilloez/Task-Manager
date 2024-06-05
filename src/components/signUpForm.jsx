@@ -3,20 +3,27 @@ import Joi from 'joi-browser';
 import { Link } from 'react-router-dom'
 import Form from './form'
 
-class LogIn extends Form { 
+class SignUpForm extends Form { 
     state = {
         data: { 
+            name: '',
             email: '', 
-            password: '' 
+            password: '',
         },
         errors: {},
     };
 
     schema = {
+        name: Joi
+            .string()
+            .required()
+            .label('Name')
+            .trim(),
         email: Joi
             .string()
             .required()
             .label('Email')
+            .trim()
             .email(),
         password: Joi
             .string()
@@ -33,18 +40,19 @@ class LogIn extends Form {
     render() { 
         return <div className='container d-flex justify-content-center flex-column' style={{ paddingLeft: '20%', paddingRight: '20%' }}>
             <div className='fs-2 fw-bold my-3'>
-                Log In
+                Sign Up
             </div>
             <form onSubmit={ this.handleSubmit } className='border-top border-bottom pb-4'>
+                { this.renderInput('name', 'Name') }
                 { this.renderInput('email', 'Email', 'email') }
-                { this.renderInput('password', 'Password', 'password')}
-                { this.renderButton('Log In') }
+                { this.renderInput('password', 'Password', 'password') }
+                { this.renderButton('Sign Up') }
             </form>
             <div className='formTextLink mt-4'>
-                New? <Link to='/signUpForm'>Sign Up</Link> here.
+                Already have an account? <Link to='/logInForm'>Log In</Link> here.
             </div>
         </div>
     }
 }
  
-export default LogIn;
+export default SignUpForm;

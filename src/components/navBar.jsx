@@ -12,10 +12,10 @@ const NavBar = () => {
                 <Link to="/">Home</Link>
             </li>
             <li className={ `${styles.navLink}` }>
-                <Link to="/login">Log In</Link>
+                <Link to='/signUpForm'>Sign Up</Link>
             </li>
             <li className={ `${styles.navLink}` }>
-                <Link to='/admin'>Admin</Link>
+                <Link to="/login">Log In</Link>
             </li>
         </ul>
     </nav>

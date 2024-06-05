@@ -1,6 +1,6 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Admin from './components/admin';
-import SignUp from './components/signUp';
+import SignUpForm from './components/signUpForm';
 import LogInForm from './components/logInForm';
 import ATask from './components/aTask';
 import NotFound from './components/notFound';
@@ -15,7 +15,7 @@ function App() {
       <Switch>
         <Route path='/aTask/:id/:title' component={ ATask } />
         <Route path='/admin' component={ Admin } />
-        <Route path='/signUp' component={ SignUp } />
+        <Route path='/signUpForm' component={ SignUpForm } />
         <Route path='/logIn' component={ LogInForm } />
         <Route path='/notFound' component={ NotFound } />
         <Route path='/' exact component={ Tasks } />

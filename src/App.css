@@ -58,3 +58,9 @@ nav a:hover {
 .cursorPointer {
   cursor: pointer;
 }
+
+.formTextLink a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}

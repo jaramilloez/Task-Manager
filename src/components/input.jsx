@@ -8,7 +8,6 @@ const input = ({ name, label, error, ...rest }) => {
             name={ name }
             className="form-control" 
             id={ name } 
-            autoFocus={ name === 'username' ? true : false }
         />
         { error && <div className="alert alert-danger">{ error }</div> }
     </div>

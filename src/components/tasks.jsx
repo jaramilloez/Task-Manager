@@ -73,7 +73,7 @@ class Tasks extends Component {
                     onDelete={ this.handleDelete} 
                     onSort={ this.handleSort }
                 />
-                <p className='m-0 p-2 pb-0 fs-6 fst-italic'>{ itemsCount } results</p>
+                <p className='m-0 ps-3 fst-italic'>{ itemsCount } results</p>
                 <Pagination 
                     itemsCount={ itemsCount } 
                     pageSize={ pageSize } 
