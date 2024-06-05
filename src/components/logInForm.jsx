@@ -27,11 +27,11 @@ class LogIn extends Form {
     }
 
     render() { 
-        return <div className='container d-flex justify-content-center mt-4 flex-column' style={{ paddingLeft: '20%', paddingRight: '20%' }}>
-            <div className='fs-2 fw-bold'>
+        return <div className='container d-flex justify-content-center flex-column' style={{ paddingLeft: '20%', paddingRight: '20%' }}>
+            <div className='fs-2 fw-bold my-3'>
                 Log In
             </div>
-            <form onSubmit={ this.handleSubmit }>
+            <form onSubmit={ this.handleSubmit } className='border-top border-bottom pb-4'>
                 { this.renderInput('username', 'Username')}
                 { this.renderInput('password', 'Password', 'password')}
                 { this.renderButton('Log In') }
