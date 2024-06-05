@@ -1,7 +1,7 @@
 import React from 'react';
 import Joi from 'joi-browser';
 import { Link } from 'react-router-dom'
-import Form from './form'
+import Form from './common/form'
 
 class SignUpForm extends Form { 
     state = {
@@ -34,7 +34,6 @@ class SignUpForm extends Form {
 
     doSubmit = () => {
         console.log('Submitted');
-        window.location.href = '/'
     }
 
     render() { 
@@ -46,7 +45,9 @@ class SignUpForm extends Form {
                 { this.renderInput('name', 'Name') }
                 { this.renderInput('email', 'Email', 'email') }
                 { this.renderInput('password', 'Password', 'password') }
-                { this.renderButton('Sign Up') }
+                <Link to='/'>
+                    { this.renderButton('Sign Up') }
+                </Link>
             </form>
             <div className='formTextLink mt-4'>
                 Already have an account? <Link to='/logInForm'>Log In</Link> here.

@@ -9,7 +9,7 @@ const Pagination = props => {
     const pages = _.range(1, pageCount + 1);
 
     return <div>
-        <nav className='d-flex justify-content-center py-2'>
+        <div className='d-flex justify-content-center py-2'>
             <ul className="pagination" style={{ marginBottom: 0 }}>
                 { pages.map(page => (
                     <li className={ page === currentPage ? 'page-item active' : 'page-item'} key={ page }>
@@ -17,7 +17,7 @@ const Pagination = props => {
                     </li>
                 ))}
             </ul>
-        </nav>
+        </div>
     </div>
 }
 

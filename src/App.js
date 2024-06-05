@@ -10,7 +10,7 @@ import './App.css';
 
 function App() {
   return (
-    <div>
+    <div style={{ fontFamily: 'Open sans'}}>
       <NavBar />
       <Switch>
         <Route path='/aTask/:id/:title' component={ ATask } />

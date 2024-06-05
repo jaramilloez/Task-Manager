@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { faSortDown } from '@fortawesome/free-solid-svg-icons';
-import styles from '../utility/commonStyles';
+import styles from '../../utility/commonStyles';
 
 class TableHeader extends Component { 
     raiseSort = path => {

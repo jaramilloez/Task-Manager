@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import TableBody from './tableBody';
-import TableHeader from './tableHeader';
+import TableBody from './common/tableBody';
+import TableHeader from './common/tableHeader';
 
 class TasksTable extends Component {
     render() { 
     const { tasks, onDelete, onSort, sortColumn } = this.props;
 
-    return <div className='container-fluid position-relative overflow-visible' style={{ height: '695px' }}>
+    return <div className='container-fluid position-relative overflow-visible' style={{ height: '680px' }}>
         <TableHeader sortColumn={ sortColumn } onSort={ onSort } />
         <TableBody data={ tasks } onDelete={ onDelete } />
     </div>

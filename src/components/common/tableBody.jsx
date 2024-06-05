@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import styles from '../utility/commonStyles';
+import styles from '../../utility/commonStyles';
 
 class TableBody extends Component { 
     render() { 

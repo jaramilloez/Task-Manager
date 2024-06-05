@@ -1,7 +1,7 @@
 import React from 'react';
 import Joi from 'joi-browser';
 import { Link } from 'react-router-dom'
-import Form from './form'
+import Form from './common/form'
 
 class LogIn extends Form { 
     state = {

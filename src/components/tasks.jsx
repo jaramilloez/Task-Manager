@@ -59,18 +59,14 @@ class Tasks extends Component {
         const { pageSize, currentPage, sortColumn } = this.state;
         const { itemsCount, data: tasks } = this.getPagedData();
 
-        return <div className='container-xxl d-flex justify-content-center' style={{ fontFamily: 'Open sans'}}>
+        return <div className='container-xxl d-flex justify-content-center' style={{ padding: '0 30px'}}>
             <div className='me-3 col-2 d-none d-md-block position-relative' style={{ top: '60px' }}>
-                <div className='row'>
-                    <button className='px-3 btn btn-primary rounded-pill'>Add new task</button>
-                </div>
-                <div className='row'>
-                    <Filter 
-                        items={ this.state.types } 
-                        selectedItem={ this.state.selectedType }
-                        onItemSelect={ this.handleTypeSelect } 
-                    />
-                </div>
+                <Filter 
+                    items={ this.state.types } 
+                    selectedItem={ this.state.selectedType }
+                    onItemSelect={ this.handleTypeSelect } 
+                />
+                <p className='m-2 fst-italic'>{ itemsCount } results</p>
             </div>
             <div className='col-10'>
                 <TasksTable 
@@ -79,7 +75,11 @@ class Tasks extends Component {
                     onDelete={ this.handleDelete} 
                     onSort={ this.handleSort }
                 />
-                <p className='m-0 ps-3 fst-italic'>{ itemsCount } results</p>
+                <Link to='/aTask'>
+                    <button className='ms-2 px-4 btn btn-outline-primary rounded-pill'>
+                        Add new task
+                    </button>
+                </Link>
                 <Pagination 
                     itemsCount={ itemsCount } 
                     pageSize={ pageSize } 
