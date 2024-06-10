@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import _ from 'lodash'
 import { Link } from 'react-router-dom'
 import TasksTable from './tasksTable';
-import { getTypes } from '../services/tasks'
 import Filter from './filter';
 import { paginate } from '../utility/paginate'
 import Pagination from './pagination';
-import { deleteTask } from '../services/tasks'
-import { getTasks } from '../services/tasks'
+import { getTasks, deleteTask, getTypes } from '../services/tasks'
 
 
 class Tasks extends Component {
