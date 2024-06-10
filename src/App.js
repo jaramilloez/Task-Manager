@@ -13,7 +13,7 @@ function App() {
     <div style={{ fontFamily: 'Open sans'}}>
       <NavBar />
       <Switch>
-        <Route path='/aTask/:id/:title' component={ ATask } />
+        <Route path='/aTask/:_id' component={ ATask } />
         <Route path='/admin' component={ Admin } />
         <Route path='/signUpForm' component={ SignUpForm } />
         <Route path='/logIn' component={ LogInForm } />

@@ -34,6 +34,7 @@ class SignUpForm extends Form {
 
     doSubmit = () => {
         console.log('Submitted');
+        this.props.history.replace("/")
     }
 
     render() { 

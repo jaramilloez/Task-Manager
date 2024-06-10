@@ -27,7 +27,7 @@ class LogIn extends Form {
 
     doSubmit = () => {
         console.log('Submitted');
-        window.location.href = '/'
+        this.props.history.replace("/")
     }
 
     render() { 

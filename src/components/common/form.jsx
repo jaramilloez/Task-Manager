@@ -38,6 +38,7 @@ class Form extends Component {
         console.log(errors)
         this.setState({ errors: errors || {} });
         if (errors) return;
+
         this.doSubmit();
     };
     
