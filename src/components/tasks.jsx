@@ -59,7 +59,7 @@ class Tasks extends Component {
         const { pageSize, currentPage, sortColumn } = this.state;
         const { itemsCount, data: tasks } = this.getPagedData();
 
-        return <div className='container-xxl d-flex justify-content-center' style={{ padding: '0 30px'}}>
+        return <div className='container-xxl d-flex justify-content-center' style={{ padding: '0 50px'}}>
             <div className='me-3 col-2 d-none d-md-block position-relative' style={{ top: '60px' }}>
                 <Filter 
                     items={ this.state.types } 
