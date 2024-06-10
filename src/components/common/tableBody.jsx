@@ -31,8 +31,7 @@ class TableBody extends Component {
                         </button>
                     </div>
                 </Link>
-            ))
-            }
+            ))}
         </div>
     }
 }
