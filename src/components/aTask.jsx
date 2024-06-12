@@ -1,6 +1,6 @@
 import React from 'react';
 import Joi from 'joi-browser';
-import { getTask, getTypes, saveTask } from '../services/tasks';
+import { getTask, getTypes, saveTask, getSeverities } from '../services/tasks';
 import Form from './common/form';
 
 class LogIn extends Form { 
@@ -11,7 +11,8 @@ class LogIn extends Form {
             type: '',
             severity: '',
         },
-        types: {},
+        types: [],
+        severities: [],
         errors: {},
     };
 
@@ -37,8 +38,11 @@ class LogIn extends Form {
     };
 
     componentDidMount() {
-        const types = getTypes;
-        this.setState(types);
+        const types = getTypes();
+        this.setState({ types });
+
+        const severities = getSeverities();
+        this.setState({ severities });
 
         const taskId = this.props.match.params._id;
         if(taskId === 'new-task') return;
@@ -65,12 +69,14 @@ class LogIn extends Form {
     }
 
     render() { 
+        const { types, severities } = this.state
+        const { type, severity } = this.state.data
         return <div className='container' style={{ paddingLeft: '20%', paddingRight: '20%' }}>
             <form onSubmit={ this.handleSubmit } className='border-top border-bottom pb-4'>
                 { this.renderInput('title', 'Title') }
                 { this.renderInput('description', 'Description') }
-                { this.renderInput('type', 'Type') }
-                { this.renderInput('severity', 'Severity') }
+                { this.renderSelect('type', 'Type', types, type._id) }
+                { this.renderSelect('severity', 'Severity', severities, severity._id) }
                 { this.renderButton('Save') }
             </form>
         </div>

@@ -4,7 +4,7 @@ export const tasks = [
     title: "Stay Hydrated",
     description: "Drink da dew",
     type: { _id: '1', name: "DayToDay" },
-    severity: { _id: 2, name: "Very Important" },
+    severity: { _id: 3, name: "Very Important" },
     complete: false,
   },
   {
@@ -12,7 +12,7 @@ export const tasks = [
     title: "Dishes",
     description: "Do the dishes",
     type: { _id: '2', name: "Home" },
-    severity: { _id: 0, name: "Normal" },
+    severity: { _id: 1, name: "Normal" },
     complete: false,
   },
   {
@@ -20,7 +20,7 @@ export const tasks = [
     title: "Laundry",
     description: "Do Laundry",
     type: { _id: '2', name: "Home" },
-    severity: { _id: 0, name: "Normal" },
+    severity: { _id: 1, name: "Normal" },
     complete: false,
   },
   {
@@ -28,7 +28,7 @@ export const tasks = [
     title: "Report",
     description: "Make Employee Report",
     type: { _id: '3', name: "Work" },
-    severity: { _id: 1, name: "Important" },
+    severity: { _id: 2, name: "Important" },
     complete: false,
   },
   {
@@ -36,7 +36,7 @@ export const tasks = [
     title: "Brush Teeth",
     description: "Brush my Teeth",
     type: { _id: '2', name: "Home" },
-    severity: { _id: 2, name: "Very Important" },
+    severity: { _id: 3, name: "Very Important" },
     complete: false,
   }, 
   {
@@ -44,7 +44,7 @@ export const tasks = [
     title: "Dust",
     description: "Dust everything indoors",
     type: { _id: '2', name: "Home" },
-    severity: { _id: 0, name: "Normal" },
+    severity: { _id: 1, name: "Normal" },
     complete: false,
   },
   {
@@ -52,7 +52,7 @@ export const tasks = [
     title: "Repair Chromebooks",
     description: "Repair 8~ Chromebooks",
     type: { _id: '3', name: "Work" },
-    severity: { _id: 2, name: "Very Important" },
+    severity: { _id: 3, name: "Very Important" },
     complete: false,
   },
   {
@@ -60,7 +60,7 @@ export const tasks = [
     title: "Shave",
     description: "Shave face",
     type: { _id: '1', name: "DayToDay" },
-    severity: { _id: 1, name: "Important" },
+    severity: { _id: 2, name: "Important" },
     complete: false,
   },
   {
@@ -68,7 +68,7 @@ export const tasks = [
     title: "Vacuum",
     description: "Vacuum rugs",
     type: { _id: '2', name: "Home" },
-    severity: { _id: 0, name: "Normal" },
+    severity: { _id: 1, name: "Normal" },
     complete: false,
   },
   {
@@ -76,7 +76,7 @@ export const tasks = [
     title: "Homework",
     description: "Work on homework",
     type: { _id: '1', name: "DayToDay" },
-    severity: { _id: 1, name: "Important" },
+    severity: { _id: 2, name: "Important" },
     complete: false,
   },
   {
@@ -84,7 +84,7 @@ export const tasks = [
     title: "Clean Glass",
     description: "Clean windows & mirrors",
     type: { _id: '2', name: "Home" },
-    severity: { _id: 0, name: "Normal" },
+    severity: { _id: 1, name: "Normal" },
     complete: false,
   },
   {
@@ -92,7 +92,7 @@ export const tasks = [
     title: "Workout",
     description: "Go to the gym",
     type: { _id: '3', name: "Work" },
-    severity: { _id: 0, name: "Normal" },
+    severity: { _id: 1, name: "Normal" },
     complete: false,
   },
 ];
@@ -110,13 +110,28 @@ export const types = [
     _id: '3',
     name: 'Work'
   },
+];
+
+const severities = [
+  {
+    _id: '1',
+    name: 'Normal'
+  },
+  {
+    _id: '2',
+    name: 'Important'
+  },
+  {
+    _id: '3',
+    name: 'Very Important'
+  },
 ]
 
-export function getTasks() { 
-  return tasks; 
-}
+export function getTasks() { return tasks; }
 
 export function getTypes() { return types; }
+
+export function getSeverities() { return severities; }
 
 export function getTask(id) {
   return tasks.find((t) => t._id === id);
@@ -131,7 +146,7 @@ export function saveTask(task) {
   taskInDb.complete = task.complete;
 
   if (!taskInDb._id) {
-    taskInDb._id = Date.now();
+    taskInDb._id = tasks.length++;
     tasks.push(taskInDb);
   }
   console.log(taskInDb);

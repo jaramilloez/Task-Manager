@@ -73,7 +73,7 @@ class Tasks extends Component {
                     onDelete={ this.handleDelete} 
                     onSort={ this.handleSort }
                 />
-                <Link to='/aTask'>
+                <Link to='/aTask/new-task'>
                     <button className='ms-2 px-4 btn btn-outline-primary rounded-pill'>
                         Add new task
                     </button>

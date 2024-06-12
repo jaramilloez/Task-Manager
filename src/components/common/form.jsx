@@ -64,15 +64,27 @@ class Form extends Component {
 
         return <Input 
             name={ name } 
-            value={ data[name] }
             label={ label }
-            onChange={ this.handleChange }
             error={ errors[name] }
             type={ type }
+            value={ data[name] }
+            onChange={ this.handleChange }
         />
     };
 
-    renderSelect(){}
+    renderSelect(name, label, options, selected){
+        const { data, errors } = this.state;
+
+        return <Select 
+            name={ name }
+            label={ label }
+            error={ errors[name] }
+            options={ options }
+            selected= { selected }
+            value={ data[name] }
+            onChange={ this.handleChange }
+        />
+    }
 }
   
 export default Form;
