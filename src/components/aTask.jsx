@@ -22,19 +22,23 @@ class LogIn extends Form {
         title: Joi
             .string()
             .required()
-            .label('title'),
+            .label('Title')
+            .trim()
+            .max(20),
         description: Joi
             .string()
             .required()
-            .label('description'),
+            .label('Description')
+            .trim()
+            .max(30),
         type: Joi
             .string()
             .required()
-            .label('type'),
+            .label('Type'),
         severity: Joi
             .string()
             .required()
-            .label('severity'),
+            .label('Severity'),
     };
 
     componentDidMount() {

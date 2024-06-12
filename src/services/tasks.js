@@ -1,6 +1,6 @@
 export const tasks = [
   {
-    _id: "1",
+    _id: "0",
     title: "Stay Hydrated",
     description: "Drink da dew",
     type: { _id: '1', name: "DayToDay" },
@@ -8,7 +8,7 @@ export const tasks = [
     complete: false,
   },
   {
-    _id: "2",
+    _id: "1",
     title: "Dishes",
     description: "Do the dishes",
     type: { _id: '2', name: "Home" },
@@ -16,7 +16,7 @@ export const tasks = [
     complete: false,
   },
   {
-    _id: "3",
+    _id: "2",
     title: "Laundry",
     description: "Do Laundry",
     type: { _id: '2', name: "Home" },
@@ -24,7 +24,7 @@ export const tasks = [
     complete: false,
   },
   {
-    _id: "4",
+    _id: "3",
     title: "Report",
     description: "Make Employee Report",
     type: { _id: '3', name: "Work" },
@@ -32,7 +32,7 @@ export const tasks = [
     complete: false,
   },
   {
-    _id: "5",
+    _id: "4",
     title: "Brush Teeth",
     description: "Brush my Teeth",
     type: { _id: '2', name: "Home" },
@@ -40,7 +40,7 @@ export const tasks = [
     complete: false,
   }, 
   {
-    _id: "6",
+    _id: "5",
     title: "Dust",
     description: "Dust everything indoors",
     type: { _id: '2', name: "Home" },
@@ -48,7 +48,7 @@ export const tasks = [
     complete: false,
   },
   {
-    _id: "7",
+    _id: "6",
     title: "Repair Chromebooks",
     description: "Repair 8~ Chromebooks",
     type: { _id: '3', name: "Work" },
@@ -56,7 +56,7 @@ export const tasks = [
     complete: false,
   },
   {
-    _id: "8",
+    _id: "7",
     title: "Shave",
     description: "Shave face",
     type: { _id: '1', name: "DayToDay" },
@@ -64,7 +64,7 @@ export const tasks = [
     complete: false,
   },
   {
-    _id: "9",
+    _id: "8",
     title: "Vacuum",
     description: "Vacuum rugs",
     type: { _id: '2', name: "Home" },
@@ -72,7 +72,7 @@ export const tasks = [
     complete: false,
   },
   {
-    _id: "10",
+    _id: "9",
     title: "Homework",
     description: "Work on homework",
     type: { _id: '1', name: "DayToDay" },
@@ -80,7 +80,7 @@ export const tasks = [
     complete: false,
   },
   {
-    _id: "11",
+    _id: "10",
     title: "Clean Glass",
     description: "Clean windows & mirrors",
     type: { _id: '2', name: "Home" },
@@ -88,7 +88,7 @@ export const tasks = [
     complete: false,
   },
   {
-    _id: "12",
+    _id: "11",
     title: "Workout",
     description: "Go to the gym",
     type: { _id: '3', name: "Work" },
@@ -146,7 +146,7 @@ export function saveTask(task) {
   taskInDb.complete = task.complete;
 
   if (!taskInDb._id) {
-    taskInDb._id = tasks.length++;
+    taskInDb._id = tasks.length + 1;
     tasks.push(taskInDb);
   }
   console.log(taskInDb);

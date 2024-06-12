@@ -53,6 +53,8 @@ class Form extends Component {
         this.setState({ data, errors });
     };
 
+    handleSelectChange = ({ currentTarget: input }) => {}
+
     renderButton(label) {
         return <button className="btn btn-primary" disabled={ this.validate() }>
             { label }
@@ -82,7 +84,7 @@ class Form extends Component {
             options={ options }
             selected= { selected }
             value={ data[name] }
-            onChange={ this.handleChange }
+            onChange={ this.handleSelectChange }
         />
     }
 }
