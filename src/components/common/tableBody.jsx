@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencil } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import styles from '../../utility/commonStyles';
 
@@ -9,12 +7,11 @@ class TableBody extends Component {
         const { data, onDelete } = this.props;
         return <div>
             { data.map(item => (
-                <div 
-                    className='row fs-5 my-2 d-flex align-items-center row-hover text-black text-decoration-none' 
+                <Link 
+                    className='row fs-5 my-2 d-flex align-items-center row-hover text-black text-decoration-none row rounded-4 bg-light shadow-sm' 
                     key={ item._id }
                     to={ `/aTask/${item._id}` }
                 >
-                    <div className='row rounded-4 bg-light shadow-sm'>
                         <div className={ `${styles.taskCol} ps-4` }>
                             { item.title }
                         </div>
@@ -28,14 +25,15 @@ class TableBody extends Component {
                             <button 
                                 type='button' 
                                 className='btn btn-outline-success px-2'
-                                onClick={ () => onDelete(item._id) }
+                                onClick={ e => {
+                                    onDelete(item._id); 
+                                    e.preventDefault();
+                                }}
                             >
                                 Complete
                             </button>
                         </div>
-                    </div>
-                    <FontAwesomeIcon icon={ faPencil } className={ `${styles.editCol}` }></FontAwesomeIcon>
-                </div>
+                </Link>
             ))}
         </div>
     }

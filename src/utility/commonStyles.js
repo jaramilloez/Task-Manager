@@ -1,9 +1,8 @@
 const styles = {
     taskCol: '       col-lg-3 col-5',
-    descriptionCol: 'col-lg-4 d-none d-lg-block',
+    descriptionCol: 'col-lg-5 d-none d-lg-block',
     typeCol: '       col-lg-2 col-3',
     completeCol: '   col-lg-2 col-3',
-    editCol: '       col-lg-1 col-1',
     taskCell: 'py-2 border-start border-2',
     horizontalLines: 'border-bottom border-3 border-dark-subtle',
     navLink: 'px-4 fs-5',

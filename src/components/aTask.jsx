@@ -1,6 +1,6 @@
 import React from 'react';
 import Joi from 'joi-browser';
-import { getTask, getTypes } from '../services/tasks';
+import { getTask, getTypes, saveTask } from '../services/tasks';
 import Form from './common/form';
 
 class LogIn extends Form { 
@@ -16,6 +16,8 @@ class LogIn extends Form {
     };
 
     schema = {
+        _id: Joi
+            .number(),
         title: Joi
             .string()
             .required()
@@ -44,21 +46,22 @@ class LogIn extends Form {
         const task = getTask(taskId);
         if (!task) this.props.history.replace("/notFound");
 
-        this.setState(this.matchedTask(task));
+        this.setState({ data: this.matchedTask(task) });
     }
 
     matchedTask(task) {
         return {
+            _id: task._id,
             title: task.title,
-            description: task.desciption,
+            description: task.description,
             type: task.type,
             severity: task.severity,
         }
     }
 
     doSubmit = () => {
-        console.log('Submitted');
-        window.location.href = '/'
+        saveTask(this.state.data);
+        this.props.history.replace('/');
     }
 
     render() { 
@@ -68,6 +71,7 @@ class LogIn extends Form {
                 { this.renderInput('description', 'Description') }
                 { this.renderInput('type', 'Type') }
                 { this.renderInput('severity', 'Severity') }
+                { this.renderButton('Save') }
             </form>
         </div>
     }
