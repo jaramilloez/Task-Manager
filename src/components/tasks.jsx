@@ -18,7 +18,7 @@ class Tasks extends Component {
     }
 
     componentDidMount() {
-        const types = [{ _id: 0, name: 'All' }, ...getTypes()]
+        const types = [{ _id: null, name: 'All' }, ...getTypes()]
         this.setState({ tasks: getTasks(), types })
     }
 
@@ -32,7 +32,7 @@ class Tasks extends Component {
         window.scrollTo({ top: 0 })
     }
 
-    handleTypeSelect = type => {
+    handleFilterSelect = type => {
         this.setState({ selectedType: type, currentPage: 1 })
     }
 
@@ -44,8 +44,8 @@ class Tasks extends Component {
         const { pageSize, currentPage, sortColumn, selectedType, tasks: allTasks } = this.state;
 
         const filtered = selectedType && selectedType._id
-            ? allTasks.filter(t => t.type._id === selectedType._id) 
-            : allTasks;
+        ? allTasks.filter(t => t.type._id === selectedType._id) 
+        : allTasks;
         
         const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order])
         const tasks = paginate( sorted, currentPage, pageSize);
@@ -62,7 +62,7 @@ class Tasks extends Component {
                 <Filter 
                     items={ this.state.types } 
                     selectedItem={ this.state.selectedType }
-                    onItemSelect={ this.handleTypeSelect } 
+                    onItemSelect={ this.handleFilterSelect } 
                 />
                 <p className='m-2 fst-italic'>{ itemsCount } results</p>
             </div>

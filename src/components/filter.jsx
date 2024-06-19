@@ -21,12 +21,7 @@ const Filter = props => {
             <li 
                 onClick={ () => onItemSelect(item) } 
                 key={ item[valueProperty] } 
-                className={` ${isActive(item, index) === true 
-                    ? 'list-group-item '
-                    : 'list-group-item'
-                }
-                    cursorPointer
-                `}
+                className={'list-group-item cursorPointer'}
             >
                 {isActive(item, index) && <FontAwesomeIcon icon={faCircle} style={{ color: '#0d6efd' }} />} { item[textProperty] }
             </li>

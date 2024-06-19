@@ -32,11 +32,9 @@ class LogIn extends Form {
             .trim()
             .max(30),
         type: Joi
-            .string()
             .required()
             .label('Type'),
         severity: Joi
-            .string()
             .required()
             .label('Severity'),
     };
@@ -73,14 +71,14 @@ class LogIn extends Form {
     }
 
     render() { 
-        const { types, severities } = this.state
-        const { type, severity } = this.state.data
+        const { types, severities } = this.state;
+
         return <div className='container' style={{ paddingLeft: '20%', paddingRight: '20%' }}>
             <form onSubmit={ this.handleSubmit } className='border-top border-bottom pb-4'>
                 { this.renderInput('title', 'Title') }
                 { this.renderInput('description', 'Description') }
-                { this.renderSelect('type', 'Type', types, type._id) }
-                { this.renderSelect('severity', 'Severity', severities, severity._id) }
+                { this.renderSelect('type', 'Type', types) }
+                { this.renderSelect('severity', 'Severity', severities) }
                 { this.renderButton('Save') }
             </form>
         </div>

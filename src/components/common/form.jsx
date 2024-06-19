@@ -42,18 +42,22 @@ class Form extends Component {
         this.doSubmit();
     };
     
-    handleChange = ({ currentTarget: input }) => {
+    handleChange = (event, options) => {
+        const input = event.target;
+
+        //Handles errors
         const errors = { ...this.state.errors };
         const errorMessage = this.validateProperty(input);
         if (errorMessage) errors[input.name] = errorMessage;
         else delete errors[input.name];
 
+        //Updates the state
         const data = { ...this.state.data };
+
         data[input.name] = input.value;
+        if (options) data[input.name] = options[input.value];
         this.setState({ data, errors });
     };
-
-    handleSelectChange = ({ currentTarget: input }) => {}
 
     renderButton(label) {
         return <button className="btn btn-primary" disabled={ this.validate() }>
@@ -74,7 +78,7 @@ class Form extends Component {
         />
     };
 
-    renderSelect(name, label, options, selected){
+    renderSelect(name, label, options){
         const { data, errors } = this.state;
 
         return <Select 
@@ -82,9 +86,8 @@ class Form extends Component {
             label={ label }
             error={ errors[name] }
             options={ options }
-            selected= { selected }
             value={ data[name] }
-            onChange={ this.handleSelectChange }
+            onChange={ event => this.handleChange(event, options) }
         />
     }
 }
