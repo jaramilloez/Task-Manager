@@ -76,10 +76,6 @@ class LogIn extends Form {
 
     render() { 
         const { types, severities } = this.state;
-<<<<<<< HEAD
-=======
-        const { type, severity } = this.state.data;
->>>>>>> 106e8cfcc6b021677689fb01e3730ece27afde13
 
         return <div className='container' style={{ paddingLeft: '20%', paddingRight: '20%' }}>
             <form onSubmit={ this.handleSubmit } className='border-top border-bottom pb-4'>
