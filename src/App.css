@@ -37,6 +37,10 @@
   }
 }
 
+#root {
+  font-family: 'Open sans'
+}
+
 nav div a {
   color: black;
   text-decoration: none;

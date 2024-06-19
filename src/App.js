@@ -1,3 +1,4 @@
+import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Admin from './components/admin';
 import SignUpForm from './components/signUpForm';
@@ -10,7 +11,7 @@ import './App.css';
 
 function App() {
   return (
-    <div style={{ fontFamily: 'Open sans'}}>
+    <React.Fragment>
       <NavBar />
       <Switch>
         <Route path='/aTask/:_id' component={ ATask } />
@@ -21,7 +22,7 @@ function App() {
         <Route path='/' exact component={ Tasks } />
         <Redirect to='/notFound' />
       </Switch>
-    </div>
+    </React.Fragment>
   );
 }
 

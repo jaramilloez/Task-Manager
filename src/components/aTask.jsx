@@ -3,7 +3,7 @@ import Joi from 'joi-browser';
 import { getTask, getTypes, saveTask, getSeverities } from '../services/tasks';
 import Form from './common/form';
 
-class LogIn extends Form { 
+class ATask extends Form { 
     state = {
         data: { 
             title: '', 
@@ -89,4 +89,4 @@ class LogIn extends Form {
     }
 }
  
-export default LogIn;
+export default ATask;
