@@ -37,12 +37,17 @@
   }
 }
 
-nav a {
+nav div a {
+  color: black;
+  text-decoration: none;
+}
+
+nav ul a {
   color: #495057;
   text-decoration: none;
 }
 
-nav a:hover {
+nav ul a:hover {
   color: black;
   text-shadow: 0 0 1px black ;
 }

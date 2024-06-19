@@ -66,12 +66,20 @@ class LogIn extends Form {
     }
 
     doSubmit = () => {
-        saveTask(this.state.data);
+        const { data, severities, types } = this.state;
+        const { severity, type } = this.state.data;
+
+        this.setState({ severity: severities[severity], type: types[type] });
+        saveTask(data);
         this.props.history.replace('/');
     }
 
     render() { 
         const { types, severities } = this.state;
+<<<<<<< HEAD
+=======
+        const { type, severity } = this.state.data;
+>>>>>>> 106e8cfcc6b021677689fb01e3730ece27afde13
 
         return <div className='container' style={{ paddingLeft: '20%', paddingRight: '20%' }}>
             <form onSubmit={ this.handleSubmit } className='border-top border-bottom pb-4'>
