@@ -138,17 +138,16 @@ export function getTask(id) {
 }
 
 export function saveTask(task) {
-  let taskInDb = tasks.find((t) => t._id === task._id) || {};
+  let taskInDb = tasks.find(t => t._id === task._id) || {};
+  if (!taskInDb._id) {
+    taskInDb._id = (tasks.length + 1).toString();
+    tasks.push(taskInDb);
+  };
   taskInDb.title = task.title;
   taskInDb.description = task.description;
   taskInDb.type = task.type;
   taskInDb.severity = task.severity;
-  taskInDb.complete = task.complete;
-
-  if (!taskInDb._id) {
-    taskInDb._id = tasks.length + 1;
-    tasks.push(taskInDb);
-  }
+  taskInDb.complete = false;
   console.log(taskInDb);
   return taskInDb;
 }

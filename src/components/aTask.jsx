@@ -41,10 +41,8 @@ class ATask extends Form {
 
     componentDidMount() {
         const types = getTypes();
-        this.setState({ types });
-
         const severities = getSeverities();
-        this.setState({ severities });
+        this.setState({ types, severities });
 
         const taskId = this.props.match.params._id;
         if(taskId === 'new-task') return;
@@ -67,11 +65,25 @@ class ATask extends Form {
 
     doSubmit = () => {
         const { data, severities, types } = this.state;
-        const { severity, type } = this.state.data;
+        let { severity, type } = this.state.data;
 
-        this.setState({ severity: severities[severity], type: types[type] });
-        saveTask(data);
-        this.props.history.replace('/');
+        // Find the selected type and severity by matching the _id
+        const selectedSeverity = severities[severity._id]
+        const selectedType = types[type._id]
+        // Update the data with the actual names
+        if (selectedSeverity != null && selectedType != null) {
+            severity = selectedSeverity;
+            type = selectedType;
+            
+            saveTask(data);
+            this.props.history.replace('/');
+        } else {
+            // Handle cases where the selection is invalid
+            const errors = { ...this.state.errors };
+            if (!selectedSeverity) errors.severity = "Severity can't be blank";
+            if (!selectedType) errors.type = "Type can't be blank";
+            this.setState({ errors });
+        }
     }
 
     render() { 
