@@ -5,7 +5,7 @@ import TasksTable from './tasksTable';
 import Filter from './filter';
 import { paginate } from '../utility/paginate'
 import Pagination from './pagination';
-import { getTasks, deleteTask, getTypes } from '../services/tasks'
+import { getTasks, deleteTask, getTypes } from '../services/faketasks'
 
 
 class Tasks extends Component {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Admin from './components/admin';
 import SignUpForm from './components/signUpForm';
@@ -7,11 +8,13 @@ import ATask from './components/aTask';
 import NotFound from './components/notFound';
 import NavBar from './components/navBar';
 import Tasks from './components/tasks';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 function App() {
   return (
     <React.Fragment>
+      <ToastContainer />
       <NavBar />
       <Switch>
         <Route path='/aTask/:_id' component={ ATask } />
