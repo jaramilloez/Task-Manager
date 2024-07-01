@@ -6,6 +6,7 @@ import styles from '../../utility/commonStyles';
 class TableHeader extends Component { 
     raiseSort = path => {
         const sortColumn = { ...this.props.sortColumn };
+        
         if (sortColumn.path === path){
             if (sortColumn.path === 'severity._id' && sortColumn.order === 'desc'){
                 sortColumn.path = path;
