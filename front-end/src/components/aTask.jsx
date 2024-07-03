@@ -1,7 +1,8 @@
 import React from 'react';
 import Joi from 'joi-browser';
+import { getTypes } from '../services/typesService';
 import { getSeverities } from '../services/severitiesService';
-import { getTask, getTypes, saveTask } from '../services/faketasks';
+import { getTask, saveTask } from '../services/faketasks';
 import Form from './common/form';
 
 class ATask extends Form { 
@@ -41,9 +42,9 @@ class ATask extends Form {
     };
 
     async componentDidMount() {
-        const types = getTypes();
+        const types = await getTypes();
         const severities = await getSeverities();
-        this.setState({ types, severities: severities.data });
+        this.setState({ types: types.data, severities: severities.data });
 
         const taskId = this.props.match.params._id;
         if(taskId === 'new-task') return;
