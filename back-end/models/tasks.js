@@ -17,7 +17,7 @@ const taskSchema = new mongoose.Schema({
     type: String,
     maxlength: 250,
   },
-  category: {
+  type: {
     type: String,
     required: true,
     minlength: 3,
@@ -42,7 +42,7 @@ function validateTask(task) {
   const schema = {
     title: Joi.string().required(),
     task: Joi.string().max(25).required(),
-    category: Joi.string().min(3).required(),
+    type: Joi.objectId().required(),
     severityId: Joi.objectId().required(),
   };
   return Joi.validate(task, schema);

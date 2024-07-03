@@ -8,6 +8,7 @@ const TestApplication = require("./middleware/logger");
 const tasks = require("./routes/tasks");
 const users = require("./routes/users");
 const severities = require("./routes/severities");
+const types = require("./routes/types")
 
 // Updated way to get Headers
 const fetch = require('node-fetch');
@@ -21,6 +22,7 @@ app.use(express.urlencoded());
 app.use("/api/tasks", tasks);
 app.use("/api/user", users);
 app.use("/api/severities", severities);
+app.use("/api/types", types);
 
 mongoose.connect("mongodb://127.0.0.1/tasks");
 

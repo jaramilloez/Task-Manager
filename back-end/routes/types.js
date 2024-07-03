@@ -1,10 +1,10 @@
 const express = require("express");
-const { Severity } = require("../models/severities");
+const { Type } = require("../models/types");
 
 const router = express.Router();
 router.get("/", async (req, res) => {
-  const severity = await Severity.find();
-  res.send(severity);
+  const type = await Type.find();
+  res.send(type);
 });
 
 module.exports = router;

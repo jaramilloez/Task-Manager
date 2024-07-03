@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import _ from 'lodash'
 import { Link } from 'react-router-dom'
+import { getTypes } from '../services/typesService'
 import TasksTable from './tasksTable';
 import Filter from './filter';
 import { paginate } from '../utility/paginate'
 import Pagination from './pagination';
-import { getTasks, deleteTask, getTypes } from '../services/faketasks'
+import { getTasks, deleteTask } from '../services/faketasks'
 
 
 class Tasks extends Component {
@@ -17,8 +18,9 @@ class Tasks extends Component {
         sortColumn: { path: 'severity._id', order: 'desc' },
     }
 
-    componentDidMount() {
-        const types = [{ _id: null, name: 'All' }, ...getTypes()]
+    async componentDidMount() {
+        const { data } = await getTypes();
+        const types = [{ _id: null, name: 'All' }, ...data]
         this.setState({ tasks: getTasks(), types })
     }
 

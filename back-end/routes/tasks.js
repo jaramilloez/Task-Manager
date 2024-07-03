@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
     title: req.body.title,
     task: req.body.task,
     additionalInfo: req.body.additionalInfo,
-    category: req.body.category,
+    type: req.body.type,
     severity: {
       _id: severity._id,
       name: severity.name,
@@ -78,7 +78,7 @@ router.put("/:id", async (req, res) => {
     $set: {
       title: req.body.title,
       task: req.body.task,
-      category: req.body.category,
+      type: req.body.type,
       severity: {
         _id: severity._id,
         name: severity.name,
