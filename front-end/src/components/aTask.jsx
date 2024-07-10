@@ -2,7 +2,7 @@ import React from 'react';
 import Joi from 'joi-browser';
 import { getTypes } from '../services/typesService';
 import { getSeverities } from '../services/severitiesService';
-import { getTask, saveTask } from '../services/faketasks';
+import { getTask, saveTask } from '../services/tasksService';
 import Form from './common/form';
 
 class ATask extends Form { 
@@ -42,17 +42,27 @@ class ATask extends Form {
     };
 
     async componentDidMount() {
-        const types = await getTypes();
-        const severities = await getSeverities();
-        this.setState({ types: types.data, severities: severities.data });
-
-        const taskId = this.props.match.params._id;
-        if(taskId === 'new-task') return;
-
-        const task = getTask(taskId);
-        if (!task) this.props.history.replace("/notFound");
-
-        this.setState({ data: this.matchedTask(task) });
+        await this.populateTypesAndGenres();
+        await this.populateTask();
+    }
+    
+    async populateTypesAndGenres() {
+        const { data: types } = await getTypes();
+        const { data: severities } = await getSeverities();
+        this.setState({ types, severities });
+    }
+    
+    async populateTask() {
+        try {
+            const taskId = this.props.match.params._id;
+            if(taskId === 'new-task') return;
+            
+            const { data: task } = await getTask(taskId);
+            this.setState({ data: this.matchedTask(task) });
+        } catch (ex) {
+            if (ex.response && ex.response.status === 404) 
+                this.props.history.replace("/notFound");
+        }
     }
 
     matchedTask(task) {
@@ -65,7 +75,7 @@ class ATask extends Form {
         }
     }
 
-    doSubmit = () => {
+    doSubmit = async () => {
         const { data, severities, types } = this.state;
         let { severity, type } = this.state.data;
 
@@ -77,7 +87,7 @@ class ATask extends Form {
             severity = selectedSeverity;
             type = selectedType;
             
-            saveTask(data);
+            await saveTask(data);
             this.props.history.replace('/');
         } else {
             // Handle cases where the selection is invalid

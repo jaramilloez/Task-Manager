@@ -1,7 +1,6 @@
-const { Task, validate } = require("../models/tasks");
-
 const express = require("express");
 const mongoose = require("mongoose");
+const { Task, validate } = require("../models/tasks");
 const { User } = require("../models/users");
 const auth = require("../middleware/auth");
 const validateObjectId = require("../middleware/validateObjectId");

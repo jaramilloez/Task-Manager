@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify';
 import { getTasks, deleteTask } from '../services/tasksService';
 import { getTypes } from '../services/typesService'
 import TasksTable from './tasksTable';
@@ -23,12 +24,21 @@ class Tasks extends Component {
         const types = [{ _id: null, name: 'All' }, ...data]
         const { data: tasks } = await getTasks();
         this.setState({ tasks, types });
-        console.log(types);
     }
 
-    handleDelete = taskId => {
-        deleteTask(taskId);
-        this.setState({ tasks: getTasks() })
+    handleDelete = async taskId => {
+        const originalTasks = this.state.tasks;
+        const tasks = originalTasks.filter(t => t._id !== taskId);
+        this.setState({ tasks });
+
+        try {
+            await deleteTask(taskId);
+        } catch (ex) {
+            if (ex.response && ex.response.status === 404) 
+                toast.error('This task has already been deleted.');
+
+            this.setState({ tasks: originalTasks });
+        }
     }
 
     handlePageChange = page => {

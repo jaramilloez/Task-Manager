@@ -41,7 +41,7 @@ function validateTask(task) {
   const schema = {
     title: Joi.string().required(),
     task: Joi.string().max(25).required(),
-    type: Joi.objectId().required(),
+    typeId: Joi.objectId().required(),
     severityId: Joi.objectId().required(),
   };
   return Joi.validate(task, schema);
