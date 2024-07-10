@@ -6,6 +6,7 @@ const { User } = require("../models/users");
 const auth = require("../middleware/auth");
 const validateObjectId = require("../middleware/validateObjectId");
 const { Severity } = require("../models/severities");
+const { Type } = require("../models/types");
 
 const router = express.Router();
 router.use(express.json());
@@ -17,11 +18,17 @@ router.post("/", async (req, res) => {
   const severity = await Severity.findById(req.body.severityId);
   if (!severity) return res.status(400).send("Invalid severity.");
 
+  const type = await Type.findById(req.body.typeId);
+  if (!type) return res.status(400).send("Invalid type.");
+
   const task = new Task({
     title: req.body.title,
     task: req.body.task,
     additionalInfo: req.body.additionalInfo,
-    type: req.body.type,
+    type: {
+      _id: type._id,
+      name: type.name
+    },    
     severity: {
       _id: severity._id,
       name: severity.name,
@@ -74,11 +81,17 @@ router.put("/:id", async (req, res) => {
   const severity = await Severity.findById(req.body.severityId);
   if (!severity) return res.status(400).send("Invalid severity.");
 
+  const type = await Type.findById(req.body.typeId);
+  if (!type) return res.status(400).send("Invalid type.");
+
   const task = await Task.findByIdAndUpdate(req.params.id, {
     $set: {
       title: req.body.title,
       task: req.body.task,
-      type: req.body.type,
+      type: {
+        _id: type._id,
+        name: type.name
+      },
       severity: {
         _id: severity._id,
         name: severity.name,

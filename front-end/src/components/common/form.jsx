@@ -80,7 +80,7 @@ class Form extends Component {
 
     renderSelect(name, label, options){
         const { data, errors } = this.state;
-        console.log(name)
+        console.log(data)
 
         return <Select 
             name={ name }

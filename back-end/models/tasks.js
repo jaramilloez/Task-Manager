@@ -1,6 +1,7 @@
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 const mongoose = require("mongoose");
+const { typeSchema } = require("./types");
 const { severitySchema } = require("./severities");
 
 const taskSchema = new mongoose.Schema({
@@ -18,11 +19,9 @@ const taskSchema = new mongoose.Schema({
     maxlength: 250,
   },
   type: {
-    type: String,
+    type: typeSchema,
     required: true,
-    minlength: 3,
   },
-
   severity: {
     type: severitySchema,
     required: true,
