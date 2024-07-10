@@ -9,7 +9,6 @@ const { Type } = require("../models/types");
 
 const router = express.Router();
 router.use(express.json());
-// removed /me and auth
 router.post("/", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -22,8 +21,7 @@ router.post("/", async (req, res) => {
 
   const task = new Task({
     title: req.body.title,
-    task: req.body.task,
-    additionalInfo: req.body.additionalInfo,
+    description: req.body.description,
     type: {
       _id: type._id,
       name: type.name
@@ -86,7 +84,7 @@ router.put("/:id", async (req, res) => {
   const task = await Task.findByIdAndUpdate(req.params.id, {
     $set: {
       title: req.body.title,
-      task: req.body.task,
+      description: req.body.description,
       type: {
         _id: type._id,
         name: type.name

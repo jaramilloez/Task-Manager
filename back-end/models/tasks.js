@@ -9,14 +9,10 @@ const taskSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  task: {
+  description: {
     type: String,
     required: true,
     maxlength: 25,
-  },
-  additionalInfo: {
-    type: String,
-    maxlength: 250,
   },
   type: {
     type: typeSchema,
@@ -40,7 +36,7 @@ const Task = mongoose.model("Task", taskSchema);
 function validateTask(task) {
   const schema = {
     title: Joi.string().required(),
-    task: Joi.string().max(25).required(),
+    description: Joi.string().max(25).required(),
     typeId: Joi.objectId().required(),
     severityId: Joi.objectId().required(),
   };

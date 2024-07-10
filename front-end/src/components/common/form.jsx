@@ -53,9 +53,8 @@ class Form extends Component {
 
         //Updates the state
         const data = { ...this.state.data };
-
+        console.log(options)
         data[input.name] = input.value;
-        if (options) data[input.name] = options[input.value];
         this.setState({ data, errors });
     };
 
@@ -80,7 +79,6 @@ class Form extends Component {
 
     renderSelect(name, label, options){
         const { data, errors } = this.state;
-        console.log(data)
 
         return <Select 
             name={ name }
