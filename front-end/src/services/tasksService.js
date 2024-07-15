@@ -20,11 +20,12 @@ export function getTask(taskId) {
 }
 
 export function saveTask(task) {
-    if (task._id) {
-        const body = {...task};
-        delete body._id;
-        http.put(taskUrl(task._id), body)
-    }
+    const body = {...task};
+    delete body._id;
 
-    return http.post(apiEndpoint, task);
-  }
+    if (task._id) {
+        http.put(taskUrl(task._id), body)
+    } else {
+        http.post(apiEndpoint, body);
+    }
+}

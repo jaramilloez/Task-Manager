@@ -53,7 +53,6 @@ class Form extends Component {
 
         //Updates the state
         const data = { ...this.state.data };
-        console.log(options)
         data[input.name] = input.value;
         this.setState({ data, errors });
     };

@@ -6,7 +6,7 @@ const Select = ({ name, label, error, options, value, ...rest }) => {
         <select 
             { ...rest }
             name={ name }
-            value={ value._id }
+            value={ value }
             className="form-select"
             id={ name } 
         >

@@ -20,7 +20,7 @@ class ATask extends Form {
 
     schema = {
         _id: Joi
-            .number(),
+            .string(),
         title: Joi
             .string()
             .required()
@@ -70,8 +70,8 @@ class ATask extends Form {
             _id: task._id,
             title: task.title,
             description: task.description,
-            type: task.type,
-            severity: task.severity,
+            type: task.type._id,
+            severity: task.severity._id,
         }
     }
 
@@ -80,8 +80,8 @@ class ATask extends Form {
         let { severity, type } = this.state.data;
 
         // Find the selected type and severity by matching the _id
-        const selectedSeverity = severities[severity._id]
-        const selectedType = types[type._id]
+        const selectedSeverity = severities.find(i => i._id === severity)
+        const selectedType = types.find(i => i._id === type)
         // Update the data with the actual names
         if (selectedSeverity != null && selectedType != null) {
             severity = selectedSeverity;
@@ -94,6 +94,7 @@ class ATask extends Form {
             const errors = { ...this.state.errors };
             if (!selectedSeverity) errors.severity = "Severity can't be blank";
             if (!selectedType) errors.type = "Type can't be blank";
+            console.log(severities, severity)
             this.setState({ errors });
         }
     }

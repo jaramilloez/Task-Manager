@@ -13,10 +13,10 @@ router.post("/", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const severity = await Severity.findById(req.body.severityId);
+  const severity = await Severity.findById(req.body.severity);
   if (!severity) return res.status(400).send("Invalid severity.");
 
-  const type = await Type.findById(req.body.typeId);
+  const type = await Type.findById(req.body.type);
   if (!type) return res.status(400).send("Invalid type.");
 
   const task = new Task({
@@ -75,10 +75,10 @@ router.put("/:id", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const severity = await Severity.findById(req.body.severityId);
+  const severity = await Severity.findById(req.body.severity);
   if (!severity) return res.status(400).send("Invalid severity.");
 
-  const type = await Type.findById(req.body.typeId);
+  const type = await Type.findById(req.body.type);
   if (!type) return res.status(400).send("Invalid type.");
 
   const task = await Task.findByIdAndUpdate(req.params.id, {
