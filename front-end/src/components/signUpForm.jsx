@@ -35,8 +35,10 @@ class SignUpForm extends Form {
 
     doSubmit = async () => {
         try{
-            await register(this.state.data)
-            this.props.history.replace("/")
+            const response = await register(this.state.data);
+            console.log(response);
+            localStorage.setItem('token', response.headers['auth-task']);
+            this.props.history.replace("/");
         } catch(ex){
             if(ex.response && ex.response.status === 404){
                 const errors = { ...this.state.errors };
@@ -55,9 +57,7 @@ class SignUpForm extends Form {
                 { this.renderInput('name', 'Name') }
                 { this.renderInput('email', 'Email', 'email') }
                 { this.renderInput('password', 'Password', 'password') }
-                <Link to='/'>
-                    { this.renderButton('Sign Up') }
-                </Link>
+                { this.renderButton('Sign Up') }
             </form>
             <div className='formTextLink mt-4'>
                 Already have an account? <Link to='/logInForm'>Log In</Link> here.

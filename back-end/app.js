@@ -20,7 +20,7 @@ require("./routes/cors")(app);
 app.use(express.json());
 app.use(express.urlencoded());
 app.use("/api/tasks", tasks);
-app.use("/api/user", users);
+app.use("/api/users", users);
 app.use("/api/severities", severities);
 app.use("/api/types", types);
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import Joi from 'joi-browser';
 import { Link } from 'react-router-dom'
+import { login } from '../services/authService';
 import Form from './common/form'
 
 class LogIn extends Form { 
@@ -25,9 +26,20 @@ class LogIn extends Form {
             .min(8),
     };
 
-    doSubmit = () => {
-        console.log('Submitted');
-        this.props.history.replace("/")
+    doSubmit = async () => {
+        try {
+            const { data } =this.state
+
+            const { data: jwt } = await login(data.email, data.password);
+            localStorage.setItem('token', jwt);
+            this.props.history.push('/');
+        } catch (ex) {
+            if(ex.response && ex.response.status === 400){
+                const errors = { ...this.state.errors };
+                errors.email = ex.response.data;
+                this.setState({ errors });
+            }
+        }
     }
 
     render() { 

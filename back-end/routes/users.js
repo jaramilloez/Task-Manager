@@ -1,11 +1,10 @@
 const _ = require("lodash");
 const express = require("express");
 const bcrypt = require("bcrypt");
-const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
+const Joi = require("joi");
 const auth = require("../middleware/auth");
 const { User, validate } = require("../models/users");
-const Joi = require("joi");
 
 const router = express.Router();
 
@@ -13,6 +12,7 @@ router.get("/me", auth, async (req, res) => {
   const user = await User.findById(req.user._id).select("-password");
   res.send(user);
 });
+
 router.post("/", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -26,8 +26,12 @@ router.post("/", async (req, res) => {
   await user.save();
 
   const token = jwt.sign({ _id: user._id }, "jwtPrivateKey");
-  res.header("auth-task", token).send(_.pick(user, ["_id", "name", "email"]));
+  res
+    .header("auth-task", token)
+    .header("access-control-expose-headers", "auth-task")
+    .send(_.pick(user, ["_id", "name", "email"]));
 });
+
 router.post("/auth", async (req, res) => {
   const { error } = validateAuth(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -41,6 +45,7 @@ router.post("/auth", async (req, res) => {
   const token = jwt.sign({ _id: user._id }, "jwtPrivateKey");
   res.send(token);
 });
+
 function validateAuth(req) {
   const schema = {
     email: Joi.string().required().email(),
