@@ -28,7 +28,7 @@ class LogIn extends Form {
 
     doSubmit = async () => {
         try {
-            const { data } =this.state
+            const { data } = this.state
 
             const { data: jwt } = await login(data.email, data.password);
             localStorage.setItem('token', jwt);

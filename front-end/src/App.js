@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 import Admin from './components/admin';
 import SignUpForm from './components/signUpForm';
 import LogInForm from './components/logInForm';
@@ -11,11 +12,23 @@ import Tasks from './components/tasks';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
-function App() {
-  return (
-    <React.Fragment>
+class App extends Component {
+  state = {};
+  
+  componentDidMount() {
+    try {
+      const jwt = localStorage.getItem("token");
+      const user = jwtDecode(jwt);
+      this.setState({ user });
+    } catch (ex) {
+      
+    }
+  }
+
+  render() {
+    return <React.Fragment>
       <ToastContainer />
-      <NavBar />
+      <NavBar user={ this.state.user } />
       <Switch>
         <Route path='/aTask/:_id' component={ ATask } />
         <Route path='/admin' component={ Admin } />
@@ -26,7 +39,7 @@ function App() {
         <Redirect to='/notFound' />
       </Switch>
     </React.Fragment>
-  );
+  }
 }
 
 export default App;
