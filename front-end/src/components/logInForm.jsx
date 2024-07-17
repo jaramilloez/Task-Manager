@@ -30,9 +30,8 @@ class LogIn extends Form {
         try {
             const { data } = this.state
 
-            const { data: jwt } = await login(data.email, data.password);
-            localStorage.setItem('token', jwt);
-            this.props.history.push('/');
+            await login(data.email, data.password);
+            window.location = '/';
         } catch (ex) {
             if(ex.response && ex.response.status === 400){
                 const errors = { ...this.state.errors };

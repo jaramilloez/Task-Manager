@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import { getCurrentUser } from './services/authService';
+import Profile from './components/profile';
 import Admin from './components/admin';
 import SignUpForm from './components/signUpForm';
 import LogInForm from './components/logInForm';
@@ -17,14 +18,13 @@ class App extends Component {
   
   componentDidMount() {
     try {
-      const jwt = localStorage.getItem("token");
-      const user = jwtDecode(jwt);
+      const user = getCurrentUser();
       this.setState({ user });
     } catch (ex) {
       
     }
   }
-
+  
   render() {
     return <React.Fragment>
       <ToastContainer />
@@ -32,6 +32,7 @@ class App extends Component {
       <Switch>
         <Route path='/aTask/:_id' component={ ATask } />
         <Route path='/admin' component={ Admin } />
+        <Route path='/profile' component={ Profile } />
         <Route path='/signUpForm' component={ SignUpForm } />
         <Route path='/logIn' component={ LogInForm } />
         <Route path='/notFound' component={ NotFound } />

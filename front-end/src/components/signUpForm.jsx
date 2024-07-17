@@ -1,6 +1,7 @@
 import React from 'react';
 import Joi from 'joi-browser';
 import { Link } from 'react-router-dom';
+import { logInWithJwt } from '../services/authService';
 import { register } from '../services/usersService';
 import Form from './common/form';
 
@@ -37,7 +38,7 @@ class SignUpForm extends Form {
         try{
             const response = await register(this.state.data);
             console.log(response);
-            localStorage.setItem('token', response.headers['auth-task']);
+            logInWithJwt('token', response.headers['auth-task']);
             this.props.history.replace("/");
         } catch(ex){
             if(ex.response && ex.response.status === 404){
