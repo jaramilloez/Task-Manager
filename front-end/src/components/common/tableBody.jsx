@@ -8,7 +8,7 @@ class TableBody extends Component {
         return <div>
             { data.map(item => (
                 <Link 
-                    className='row fs-5 my-2 d-flex align-items-center row-hover text-black text-decoration-none row rounded-4 bg-light shadow-sm' 
+                    className='row fs-5 my-2 d-flex align-items-center text-white text-decoration-none row rounded-4 taskCell' 
                     key={ item._id }
                     to={ `/aTask/${item._id}` }
                 >

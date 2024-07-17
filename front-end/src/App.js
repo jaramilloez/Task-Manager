@@ -3,7 +3,6 @@ import { ToastContainer } from 'react-toastify';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { getCurrentUser } from './services/authService';
 import Profile from './components/profile';
-import Admin from './components/admin';
 import SignUpForm from './components/signUpForm';
 import LogInForm from './components/logInForm';
 import ATask from './components/aTask';
@@ -31,7 +30,6 @@ class App extends Component {
       <NavBar user={ this.state.user } />
       <Switch>
         <Route path='/aTask/:_id' component={ ATask } />
-        <Route path='/admin' component={ Admin } />
         <Route path='/profile' component={ Profile } />
         <Route path='/signUpForm' component={ SignUpForm } />
         <Route path='/logIn' component={ LogInForm } />

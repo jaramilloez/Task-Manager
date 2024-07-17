@@ -41,25 +41,49 @@
   font-family: 'Open sans'
 }
 
+body {
+  background-color: rgb(10, 10, 10);
+}
+
+nav {
+  background-color: rgb(30, 30, 30);
+}
+
 nav div a {
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
 nav ul a, 
 nav ul {
-  color: #495057;
+  color: rgb(190, 200, 200);
   text-decoration: none;
 }
 
 nav ul li a:hover, 
 nav ul li.active a {
-  color: black;
-  text-shadow: 0 0 1px black ;
+  color: white;
+  text-shadow: 0 0 1px white ;
 }
 
-.row-hover:hover {
-  background-color: #e9ecef !important;
+.filterCell {
+  background-color: rgb(30, 30, 30);
+}
+
+.filterCell:hover {
+  background-color: rgb(40, 40, 50);
+}
+
+.tableBody {
+  background-color: rgb(30, 30, 30);
+}
+
+.taskCell {
+  background-color: rgb(30, 30, 30);
+}
+
+.taskCell:hover {
+  background-color: rgb(40, 40, 50) !important;
 }
 
 .pagination .page-link:focus {
@@ -70,8 +94,19 @@ nav ul li.active a {
   cursor: pointer;
 }
 
-.formTextLink a {
+.forms {
+  padding-left: 20%;
+  padding-right: 20%;
+  color: white;
+}
+
+.forms a {
   text-decoration: none;
-  color: black;
+  color: white;
   font-weight: bold;
+}
+
+.form-select:focus,
+.form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.75) !important;
 }

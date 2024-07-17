@@ -16,7 +16,7 @@ class Tasks extends Component {
         types: [],
         pageSize: 10,
         currentPage: 1,
-        sortColumn: { path: 'severity._id', order: 'desc' },
+        sortColumn: { path: 'severity.importance', order: 'asc' },
     }
 
     async componentDidMount() {
@@ -24,6 +24,7 @@ class Tasks extends Component {
         const types = [{ _id: null, name: 'All' }, ...data]
         const { data: tasks } = await getTasks();
         this.setState({ tasks, types });
+        console.log(tasks)
     }
 
     handleDelete = async taskId => {
@@ -78,7 +79,7 @@ class Tasks extends Component {
                     selectedItem={ this.state.selectedType }
                     onItemSelect={ this.handleFilterSelect } 
                 />
-                <p className='m-2 fst-italic'>{ itemsCount } results</p>
+                <p className='m-2 fst-italic text-end' style={{ color: 'rgb(190, 200, 200)'}}>{ itemsCount } results</p>
             </div>
             <div className='col-10'>
                 <TasksTable 

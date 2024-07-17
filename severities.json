@@ -2,17 +2,20 @@
   "_id": {
     "$oid": "662183a550d3e453f3103716"
   },
-  "name": "Not Important"
+  "name": "Not Important",
+  "importance": 2
 },
 {
   "_id": {
     "$oid": "6621833950d3e453f3103712"
   },
-  "name": "Important"
+  "name": "Important",
+  "importance": 1
 },
 {
   "_id": {
     "$oid": "6621836150d3e453f3103714"
   },
-  "name": "Very Important"
+  "name": "Very Important",
+  "importance": 0
 }]

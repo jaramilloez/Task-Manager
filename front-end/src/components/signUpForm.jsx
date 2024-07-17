@@ -50,7 +50,7 @@ class SignUpForm extends Form {
     }
 
     render() { 
-        return <div className='container d-flex justify-content-center flex-column' style={{ paddingLeft: '20%', paddingRight: '20%' }}>
+        return <div className='container d-flex justify-content-center flex-column forms'>
             <div className='fs-2 fw-bold my-3'>
                 Sign Up
             </div>
@@ -60,8 +60,8 @@ class SignUpForm extends Form {
                 { this.renderInput('password', 'Password', 'password') }
                 { this.renderButton('Sign Up') }
             </form>
-            <div className='formTextLink mt-4'>
-                Already have an account? <Link to='/logInForm'>Log In</Link> here.
+            <div className='mt-4'>
+                Already have an account? <Link to='/logInForm'>Log In here.</Link>
             </div>
         </div>
     }

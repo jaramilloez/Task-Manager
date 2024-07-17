@@ -15,15 +15,15 @@ const Filter = props => {
         }
     }
 
-    return <ul className="pe-0 list-group">
-        <li className='list-group-item fs-5 fw-bold pe-3'>Filter by type</li>
+    return <ul className="pe-0 list-group" style={{ backgroundColor: 'rgb(30, 30, 30)' }}>
+        <li className='list-group-item fs-5 fw-bold pe-3 border-0 text-white' style={{ backgroundColor: 'rgb(30, 30, 30)' }} >Filter by type</li>
         { items.map((item, index) => (
             <li 
                 onClick={ () => onItemSelect(item) } 
                 key={ item[valueProperty] } 
-                className={'list-group-item cursorPointer'}
+                className={'list-group-item cursorPointer border-0 text-white filterCell'}
             >
-                {isActive(item, index) && <FontAwesomeIcon icon={faCircle} style={{ color: '#0d6efd' }} />} { item[textProperty] }
+                {isActive(item, index) && <FontAwesomeIcon icon={faCircle} style={{ color: 'rgb(10, 110, 255' }} />} { item[textProperty] }
             </li>
         ))}
     </ul>

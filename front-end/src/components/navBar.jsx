@@ -5,7 +5,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import styles from '../utility/commonStyles';
 
 const NavBar = ({ user }) => {
-    return <nav className='px-4 mb-4 bg-light d-flex justify-content-between align-items-center text-nowrap'>
+    return <nav className='px-4 mb-4 d-flex justify-content-between align-items-center text-nowrap'>
         <div className={ `${styles.navTitle}` }>
             <Link to='/'>My To Dos</Link>
         </div>

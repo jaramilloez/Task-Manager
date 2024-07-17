@@ -102,7 +102,7 @@ class ATask extends Form {
     render() { 
         const { types, severities } = this.state;
 
-        return <div className='container' style={{ paddingLeft: '20%', paddingRight: '20%' }}>
+        return <div className='container forms'>
             <form onSubmit={ this.handleSubmit } className='border-top border-bottom pb-4'>
                 { this.renderInput('title', 'Title') }
                 { this.renderInput('description', 'Description') }
