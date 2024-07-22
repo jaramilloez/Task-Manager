@@ -1,7 +1,8 @@
 import React from 'react';
 import Joi from 'joi-browser';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import { Link } from 'react-router-dom'
-import { login } from '../services/authService';
+import { logIn, getCurrentUser } from '../services/authService';
 import Form from './common/form'
 
 class LogIn extends Form { 
@@ -30,8 +31,9 @@ class LogIn extends Form {
         try {
             const { data } = this.state
 
-            await login(data.email, data.password);
-            window.location = '/';
+            await logIn(data.email, data.password);
+            const { state } = this.props.location;
+            window.location = state ? state.from.pathname : '/tasks'
         } catch (ex) {
             if(ex.response && ex.response.status === 400){
                 const errors = { ...this.state.errors };
@@ -42,6 +44,8 @@ class LogIn extends Form {
     }
 
     render() { 
+        if(getCurrentUser()) return <Redirect to='/' />
+
         return <div className='container d-flex justify-content-center flex-column forms'>
             <div className='fs-2 fw-bold my-3'>
                 Log In

@@ -4,6 +4,7 @@ import { getTypes } from '../services/typesService';
 import { getSeverities } from '../services/severitiesService';
 import { getTask, saveTask } from '../services/tasksService';
 import Form from './common/form';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 class TaskForm extends Form { 
     state = {
