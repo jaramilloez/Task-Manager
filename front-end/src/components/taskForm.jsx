@@ -5,7 +5,7 @@ import { getSeverities } from '../services/severitiesService';
 import { getTask, saveTask } from '../services/tasksService';
 import Form from './common/form';
 
-class ATask extends Form { 
+class TaskForm extends Form { 
     state = {
         data: { 
             title: '', 
@@ -114,4 +114,4 @@ class ATask extends Form {
     }
 }
  
-export default ATask;
+export default TaskForm;

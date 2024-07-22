@@ -30,6 +30,7 @@ router.post("/", async (req, res) => {
     severity: {
       _id: severity._id,
       name: severity.name,
+      importance: severity.importance
     },
     completed: false,
   });
@@ -88,11 +89,13 @@ router.put("/:id", async (req, res) => {
       description: req.body.description,
       type: {
         _id: type._id,
-        name: type.name
+        name: type.name,
+
       },
       severity: {
         _id: severity._id,
         name: severity.name,
+        importance: severity.importance
       },
       completed: req.body.completed,
     },

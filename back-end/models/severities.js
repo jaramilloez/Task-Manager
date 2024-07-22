@@ -5,6 +5,10 @@ const severitySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  importance: {
+    type: Number,
+    required: true
+  }
 });
 
 const Severity = mongoose.model("Severity", severitySchema);

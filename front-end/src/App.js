@@ -5,7 +5,7 @@ import { getCurrentUser } from './services/authService';
 import Profile from './components/profile';
 import SignUpForm from './components/signUpForm';
 import LogInForm from './components/logInForm';
-import ATask from './components/aTask';
+import TaskForm from './components/taskForm';
 import NotFound from './components/notFound';
 import NavBar from './components/navBar';
 import Tasks from './components/tasks';
@@ -29,12 +29,12 @@ class App extends Component {
       <ToastContainer />
       <NavBar user={ this.state.user } />
       <Switch>
-        <Route path='/aTask/:_id' component={ ATask } />
         <Route path='/profile' component={ Profile } />
-        <Route path='/signUpForm' component={ SignUpForm } />
+        <Route path='/signUp' component={ SignUpForm } />
         <Route path='/logIn' component={ LogInForm } />
         <Route path='/notFound' component={ NotFound } />
-        <Route path='/' exact component={ Tasks } />
+        <Route path='/:_id' component={ TaskForm } />
+        <Route path='/' component={ Tasks } />
         <Redirect to='/notFound' />
       </Switch>
     </React.Fragment>

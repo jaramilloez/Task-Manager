@@ -10,7 +10,7 @@ class TableBody extends Component {
                 <Link 
                     className='row fs-5 my-2 d-flex align-items-center text-white text-decoration-none row rounded-4 taskCell' 
                     key={ item._id }
-                    to={ `/aTask/${item._id}` }
+                    to={ `/${item._id}` }
                 >
                         <div className={ `${styles.taskCol} ps-4` }>
                             { item.title }

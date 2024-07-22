@@ -16,7 +16,7 @@ class Tasks extends Component {
         types: [],
         pageSize: 10,
         currentPage: 1,
-        sortColumn: { path: 'severity.importance', order: 'asc' },
+        sortColumn: { path: 'severity.importance', order: 'desc' },
     }
 
     async componentDidMount() {
@@ -24,7 +24,6 @@ class Tasks extends Component {
         const types = [{ _id: null, name: 'All' }, ...data]
         const { data: tasks } = await getTasks();
         this.setState({ tasks, types });
-        console.log(tasks)
     }
 
     handleDelete = async taskId => {
@@ -85,7 +84,7 @@ class Tasks extends Component {
                 <TasksTable 
                     tasks={ tasks } 
                     sortColumn={ sortColumn }
-                    onDelete={ this.handleDelete} 
+                    onDelete={ this.handleDelete } 
                     onSort={ this.handleSort }
                 />
                 <Link to='/aTask/new-task'>

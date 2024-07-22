@@ -16,10 +16,10 @@ const NavBar = ({ user }) => {
             {!user && (
                 <React.Fragment>
                     <li className={ `${styles.navLink}` }>
-                        <Link to='/signUpForm'>Sign Up</Link>
+                        <Link to='/signUp'>Sign Up</Link>
                     </li>
                     <li className={ `${styles.navLink}` }>
-                        <Link to="/login">Log In</Link>
+                        <Link to="/logIn">Log In</Link>
                     </li>
                 </React.Fragment>
             )}
