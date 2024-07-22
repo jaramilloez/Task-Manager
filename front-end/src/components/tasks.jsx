@@ -68,14 +68,14 @@ class Tasks extends Component {
     }
 
     render() { 
-        const { pageSize, currentPage, sortColumn } = this.state;
+        const { pageSize, currentPage, sortColumn, types, selectedType } = this.state;
         const { itemsCount, data: tasks } = this.getPagedData();
 
         return <div className='container-xxl d-flex justify-content-center' style={{ padding: '0 50px'}}>
             <div className='me-3 col-2 d-none d-md-block position-relative' style={{ top: '60px' }}>
                 <Filter 
-                    items={ this.state.types } 
-                    selectedItem={ this.state.selectedType }
+                    items={ types } 
+                    selectedItem={ selectedType }
                     onItemSelect={ this.handleFilterSelect } 
                 />
                 <p className='m-2 fst-italic text-end' style={{ color: 'rgb(190, 200, 200)'}}>{ itemsCount } results</p>
@@ -87,7 +87,7 @@ class Tasks extends Component {
                     onDelete={ this.handleDelete } 
                     onSort={ this.handleSort }
                 />
-                <Link to='/aTask/new-task'>
+                <Link to='/tasks/new-task'>
                     <button className='ms-2 px-4 btn btn-outline-primary rounded-pill'>
                         Add new task
                     </button>

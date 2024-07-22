@@ -2,9 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 
-const Filter = props => {
-    const { items, textProperty, valueProperty, selectedItem, onItemSelect } = props;
-
+const Filter = ({ items, textProperty, valueProperty, selectedItem, onItemSelect }) => {
     const isActive = (item, index) => {
         if(selectedItem == null){
             if(index === 0) return true;
