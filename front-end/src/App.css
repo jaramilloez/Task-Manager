@@ -66,12 +66,32 @@ nav ul li.active a {
   text-shadow: 0 0 1px white ;
 }
 
+@media (min-width: 768px){
+  #homeContent{
+    padding: 0 50px;
+  }
+}
+
 .filterCell {
   background-color: rgb(30, 30, 30);
 }
 
 .filterCell:hover {
   background-color: rgb(40, 40, 50);
+}
+
+@media (max-width: 991px) {
+  .columns{
+    grid-template-columns: 40% 25% 35%;
+  }
+}
+@media (min-width: 992px) {
+  .columns {
+    grid-template-columns: 25% auto 15% 20%;
+  }
+}
+.columns{
+  display: grid;
 }
 
 .tableBody {
@@ -84,6 +104,10 @@ nav ul li.active a {
 
 .taskCell:hover {
   background-color: rgb(40, 40, 50) !important;
+}
+
+.completeBtn {
+  width: 80%;
 }
 
 .pagination .page-link:focus {

@@ -16,7 +16,7 @@ class Tasks extends Component {
         types: [],
         pageSize: 10,
         currentPage: 1,
-        sortColumn: { path: 'severity.importance', order: 'desc' },
+        sortColumn: { path: 'severity.importance', order: 'asc' },
     }
 
     async componentDidMount() {
@@ -71,7 +71,7 @@ class Tasks extends Component {
         const { pageSize, currentPage, sortColumn, types, selectedType } = this.state;
         const { itemsCount, data: tasks } = this.getPagedData();
 
-        return <div className='container-xxl d-flex justify-content-center' style={{ padding: '0 50px'}}>
+        return <div id='homeContent' className='container-xxl d-flex justify-content-center text-nowrap'>
             <div className='me-3 col-2 d-none d-md-block position-relative' style={{ top: '60px' }}>
                 <Filter 
                     items={ types } 

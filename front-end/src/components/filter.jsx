@@ -14,7 +14,7 @@ const Filter = ({ items, textProperty, valueProperty, selectedItem, onItemSelect
     }
 
     return <ul className="pe-0 list-group" style={{ backgroundColor: 'rgb(30, 30, 30)' }}>
-        <li className='list-group-item fs-5 fw-bold pe-3 border-0 text-white' style={{ backgroundColor: 'rgb(30, 30, 30)' }} >Filter by type</li>
+        <li className='list-group-item fs-5 fw-bold pe-3 border-0 border-bottom border-white text-white' style={{ backgroundColor: 'rgb(30, 30, 30)' }} >Filter</li>
         { items.map((item, index) => (
             <li 
                 onClick={ () => onItemSelect(item) } 

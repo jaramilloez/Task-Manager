@@ -1,5 +1,5 @@
 const styles = {
-    taskCol: '       col-lg-3 col-5',
+    taskCol: '       col-lg-3 col-6',
     descriptionCol: 'col-lg-5 d-none d-lg-block',
     typeCol: '       col-lg-2 col-3',
     completeCol: '   col-lg-2 col-3',

@@ -1,28 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import { getCurrentUser } from './../../services/authService';
 import styles from '../../utility/commonStyles';
 
 const TableBody = ({ data, onDelete}) => { 
     return <div>
         { data.map(item => (
             <Link 
-                className='row fs-5 my-2 d-flex align-items-center text-white text-decoration-none row rounded-4 taskCell' 
+                className='taskCell columns row fs-5 my-2 align-items-center text-white text-decoration-none rounded-4' 
                 key={ item._id }
                 to={ `/tasks/${item._id}` }
             >
-                    <div className={ `${styles.taskCol} ps-4` }>
+                    <div className={ 'ps-4' }>
                         { item.title }
                     </div>
-                    <div className={ `${styles.descriptionCol} ${styles.taskCell}` }>
+                    <div className={ `${styles.taskCell} d-none d-lg-block ` }>
                         { item.description }
                     </div>
-                    <div className={ `${styles.typeCol} ${styles.taskCell} py-2 border-start border-2` }>
+                    <div className={ `${styles.taskCell} py-2 border-start border-2` }>
                         { item.type.name }
                     </div>
-                    <div className={ `${styles.completeCol} ${styles.taskCell} d-flex align-items-center justify-content-center` }>
+                    { getCurrentUser() && <div className={ `${styles.taskCell} d-flex align-items-center justify-content-center` }>
                         <button 
                             type='button' 
-                            className='btn btn-outline-success px-2'
+                            className='btn btn-outline-success px-2 completeBtn'
                             onClick={ e => {
                                 onDelete(item._id); 
                                 e.preventDefault();
@@ -30,7 +31,7 @@ const TableBody = ({ data, onDelete}) => {
                         >
                             Complete
                         </button>
-                    </div>
+                    </div> }
             </Link>
         ))}
     </div>
