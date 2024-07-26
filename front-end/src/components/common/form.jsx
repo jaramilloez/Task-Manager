@@ -15,7 +15,7 @@ class Form extends Component {
             this.schema, 
             { abortEarly: false }
         );
-        if (!error) return null;
+        if(!error) return null;
         const errors = {};
 
         for (let item of error.details) {
@@ -37,7 +37,7 @@ class Form extends Component {
         const errors = this.validate();
         if(errors) console.log(errors);
         this.setState({ errors: errors || {} });
-        if (errors) return;
+        if(errors) return;
 
         this.doSubmit();
     };
@@ -48,7 +48,7 @@ class Form extends Component {
         //Handles errors
         const errors = { ...this.state.errors };
         const errorMessage = this.validateProperty(input);
-        if (errorMessage) errors[input.name] = errorMessage;
+        if(errorMessage) errors[input.name] = errorMessage;
         else delete errors[input.name];
 
         //Updates the state

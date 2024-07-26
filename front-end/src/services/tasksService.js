@@ -23,9 +23,9 @@ export function saveTask(task) {
     const body = {...task};
     delete body._id;
 
-    if (task._id) {
+    if(task._id) {
         http.put(taskUrl(task._id), body)
-    } else {
+    }else{
         http.post(apiEndpoint, body);
     }
 }

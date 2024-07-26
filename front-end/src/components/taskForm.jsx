@@ -61,7 +61,7 @@ class TaskForm extends Form {
             const { data: task } = await getTask(taskId);
             this.setState({ data: this.matchedTask(task) });
         } catch (ex) {
-            if (ex.response && ex.response.status === 404) 
+            if(ex.response && ex.response.status === 404) 
                 this.props.history.replace("/notFound");
         }
     }
@@ -84,7 +84,7 @@ class TaskForm extends Form {
         const selectedSeverity = severities.find(i => i._id === severity)
         const selectedType = types.find(i => i._id === type)
         // Update the data with the actual names
-        if (selectedSeverity != null && selectedType != null) {
+        if(selectedSeverity != null && selectedType != null) {
             severity = selectedSeverity;
             type = selectedType;
             
@@ -93,8 +93,8 @@ class TaskForm extends Form {
         } else {
             // Handle cases where the selection is invalid
             const errors = { ...this.state.errors };
-            if (!selectedSeverity) errors.severity = "Severity can't be blank";
-            if (!selectedType) errors.type = "Type can't be blank";
+            if(!selectedSeverity) errors.severity = "Severity can't be blank";
+            if(!selectedType) errors.type = "Type can't be blank";
             console.log(severities, severity)
             this.setState({ errors });
         }

@@ -34,7 +34,7 @@ class Tasks extends Component {
         try {
             await deleteTask(taskId);
         } catch (ex) {
-            if (ex.response && ex.response.status === 404) 
+            if(ex.response && ex.response.status === 404) 
                 toast.error('This task has already been deleted.');
 
             this.setState({ tasks: originalTasks });

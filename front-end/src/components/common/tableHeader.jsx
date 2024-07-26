@@ -5,17 +5,17 @@ import styles from '../../utility/commonStyles';
 
 const TableHeader = ({ sortColumn, onSort }) => { 
     const raiseSort = path => {
-        if (sortColumn.path === path){
-            if (sortColumn.path === 'severity._id' && sortColumn.order === 'desc'){
+        if(sortColumn.path === path){
+            if(sortColumn.path === 'severity._id' && sortColumn.order === 'desc'){
                 sortColumn.path = path;
                 sortColumn.order = 'asc'
-            } else if (sortColumn.order === 'asc'){
+            }else if(sortColumn.order === 'asc'){
                 sortColumn.order = 'desc';
-            } else{
+            }else{
                 sortColumn.path = 'severity._id';
             }
         }
-        else {
+        else{
             sortColumn.path = path;
             sortColumn.order = 'asc'
         }
@@ -23,8 +23,8 @@ const TableHeader = ({ sortColumn, onSort }) => {
     }
 
     const renderSortIcon = path => {
-        if (sortColumn.path !== path) return null;
-        if (sortColumn.order === 'asc') return <FontAwesomeIcon icon={ faSortUp } />
+        if(sortColumn.path !== path) return null;
+        if(sortColumn.order === 'asc') return <FontAwesomeIcon icon={ faSortUp } />
         return <FontAwesomeIcon icon={ faSortDown } />
     }
 
