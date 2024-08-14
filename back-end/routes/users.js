@@ -1,7 +1,6 @@
 const _ = require("lodash");
 const express = require("express");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const Joi = require("joi");
 const auth = require("../middleware/auth");
 const { User, validate } = require("../models/users");

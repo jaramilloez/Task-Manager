@@ -1,8 +1,5 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const { Task, validate } = require("../models/tasks");
-const { User } = require("../models/users");
-const auth = require("../middleware/auth");
 const validateObjectId = require("../middleware/validateObjectId");
 const { Severity } = require("../models/severities");
 const { Type } = require("../models/types");
@@ -25,12 +22,12 @@ router.post("/", async (req, res) => {
     description: req.body.description,
     type: {
       _id: type._id,
-      name: type.name
-    },    
+      name: type.name,
+    },
     severity: {
       _id: severity._id,
       name: severity.name,
-      importance: severity.importance
+      importance: severity.importance,
     },
     completed: false,
   });
@@ -90,12 +87,11 @@ router.put("/:id", async (req, res) => {
       type: {
         _id: type._id,
         name: type.name,
-
       },
       severity: {
         _id: severity._id,
         name: severity.name,
-        importance: severity.importance
+        importance: severity.importance,
       },
       completed: req.body.completed,
     },

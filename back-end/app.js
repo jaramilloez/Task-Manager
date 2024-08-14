@@ -1,5 +1,3 @@
-const Joi = require("joi");
-const EventEmmiter = require("events");
 const fs = require("fs");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -8,10 +6,10 @@ const TestApplication = require("./middleware/logger");
 const tasks = require("./routes/tasks");
 const users = require("./routes/users");
 const severities = require("./routes/severities");
-const types = require("./routes/types")
+const types = require("./routes/types");
 
-// Updated way to get Headers
-const fetch = require('node-fetch');
+// Gets Headers
+const fetch = require("node-fetch");
 global.fetch = fetch;
 global.Headers = fetch.Headers || Headers;
 
@@ -26,11 +24,10 @@ app.use("/api/types", types);
 
 mongoose.connect("mongodb://127.0.0.1/tasks");
 
-const exp = require("constants");
-
 var myHeaders = new Headers();
 myHeaders.append("Access-Control-Allow-Origin", "http://localhost:3000");
 
+//Logs errors and connection status
 const testapplication = new TestApplication();
 testapplication.on("loadApplication", (arg) => {
   fs.appendFile("logger.txt", "Application loaded!\n", (err) => {
@@ -42,6 +39,5 @@ testapplication.on("loadApplication", (arg) => {
   });
 });
 testapplication.loadApplication("Application is Loading...");
-
 const port = process.env.PORT || 3001;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
