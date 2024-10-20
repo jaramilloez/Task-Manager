@@ -8,7 +8,7 @@ const users = require("./routes/users");
 const severities = require("./routes/severities");
 const types = require("./routes/types");
 
-// Gets Headers
+// Updated way to get Headers
 const fetch = require("node-fetch");
 global.fetch = fetch;
 global.Headers = fetch.Headers || Headers;
